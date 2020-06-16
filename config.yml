@@ -1,0 +1,189 @@
+baseURL: https://kaka-lin.github.io/
+theme: hugo-theme-pure
+title: Kaka's Note
+defaultContentLanguage: en  # en/zh/...
+footnoteReturnLinkContents: ↩
+hasCJKLanguage: true
+paginate: 7
+enableEmoji: true
+PygmentsCodeFences: false
+googleAnalytics: ""      # UA-XXXXXXXX-X 
+permalinks:
+  posts: /:year/:month/:filename/
+
+taxonomies:
+    category : categories
+    tag : tags
+    series : series
+outputFormats:          # use for search. recommend not to modify 
+  SearchIndex:
+    mediaType: "application/json"
+    baseName: "searchindex"
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+    home: ["HTML","RSS","SearchIndex"]  # recommend not to modify
+
+# sitemap
+sitemap:
+  changefreq: monthly
+  filename: sitemap.xml
+  priority: 0.5
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      title: Home
+      url: /
+      weight: 1
+
+    - identifier: archives
+      name: Archives
+      title: Archives
+      url: /posts/
+      weight: 2
+
+    - identifier: categories
+      name: Categories
+      title: Categories
+      url: /categories/
+      weight: 3
+
+    - identifier: tags
+      name: Tags
+      title: Tags
+      url: /tags/
+      weight: 4
+
+    - identifier: about
+      name: About
+      title: About
+      url: /about/
+      weight: 5
+
+
+params:
+  since: 2020
+  dateFormatToUse: "2006-01-02"
+  enablePostCopyright: True
+  # the directory under content folder that you want to render
+  mainSections: ["posts"]
+  # Enable/Disable menu icons
+  # Icon Reference: http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html
+  enableMathJax: true #Enable mathjax support, to use mathematical notations
+  highlightjs:
+    langs: ["python", "javascript"] # refer to http://staticfile.org/, search highlight.js, already have highlight.min.js
+
+  # Allows you to specify an override stylesheet
+  # put custom.css in $hugo_root_dir/static/
+  customCSS: css/custom.css
+
+  menuIcons:
+    enable: true  # navigation
+    home: icon-home-fill
+    archives: icon-archives-fill
+    categories: icon-folder
+    tags: icon-tags
+    repository: icon-project
+    books: icon-book-fill
+    links: icon-friendship
+    about: icon-cup-fill
+
+  # profile
+  profile:
+    enabled: true # Whether to show profile bar
+    avatar: images/kaka.jpg
+    gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+    author: Kaka Lin
+    author_title: Software Engineer
+    author_description: AIoT
+    location: Taipei, Taiwan
+    follow: https://github.com/kaka-lin
+    # Social Links
+    social:
+      links:
+        github: https://github.com/kaka-lin
+        # twitter: https://twitter.com/
+        # facebook: /
+        # rss: /index.xml
+      link_tooltip: false # enable the social link tooltip, options: true, false
+  # Site
+  site:
+    logo:
+      enabled: true
+      width: 40
+      height: 40
+      url: favicon.ico
+    title: Kaka's Note # page title
+    favicon: favicon.ico
+    board: <p></p> # 公告牌
+
+  # Share
+  # weibo,qq,qzone,wechat,tencent,douban,diandian,facebook,twitter,google,linkedin
+  #share:
+    #enable: true
+    #sites: weibo,qq,wechat,facebook,twitter
+    #mobile_sites: weibo,qq,qzone
+
+  # Comment
+  comment:
+    type:  # type disqus/gitalk/valine
+    disqus: your_disqus_name # enter disqus shortname here
+    gitalk: # gitalk. https://gitalk.github.io/
+      owner: #必須. GitHub repository GitHub User or Organization。
+      admin: #必须. GitHub repository 的所有者和合作者。
+      repo:  #必须. GitHub repository.
+      ClientID: #必须. GitHub Application Client ID.
+      ClientSecret: #必须. GitHub Application Client Secret.
+    valine: # Valine. https://valine.js.org
+      appid: # your leancloud application appid
+      appkey: # your leancloud application appkey
+      notify: # mail notifier , https://github.com/xCss/Valine/wiki
+      verify: # Verification code
+      placeholder: enjoy~ # comment box placeholder
+      avatar: mm # gravatar style
+      meta: nick,mail # custom comment header
+      pageSize: 10 # pagination size
+      visitor: false # Article reading statistic https://valine.js.org/visitor.html
+
+  # Donate
+  donate:
+    enable: false
+
+
+  # PV
+  pv:
+    busuanzi:
+      enable: false
+    leancloud:
+      enable: false # leancloud統計
+      app_id: # leancloud <AppID>
+      app_key: # leancloud <AppKey>
+
+  # wordcount
+  postCount:
+    enable: true
+    wordcount: false # 文章數統計
+    min2read: false # read time 閱讀時長預計
+
+  # config
+  config:
+    skin: theme-black # theme color default is white. other type [theme-black,theme-blue,theme-green,theme-purple]
+    layout: main-center # main-left main-center main-right
+    excerpt_link: Read More
+    toc: true
+
+  # Sidebar
+  sidebar: right
+
+  # Search
+  search:
+    enable: true # enable search. thanks for https://raw.githubusercontent.com/ppoffice/hexo-theme-icarus/master/source/js/insight.js
+
+  # Sidebar only the following widgets. you can remove any you don't like it.
+  widgets:
+    - category
+    - tag
+    - recent_posts

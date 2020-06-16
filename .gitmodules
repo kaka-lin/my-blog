@@ -1,10 +1,10 @@
 
 [submodule "themes/hugo-theme-pure"]
 	path = themes/hugo-theme-pure
-	url = https://github.com/kaka-lin/hugo-theme-pure.git
+	url = git@github.com:kaka-lin/hugo-theme-pure.git
 [submodule "public"]
 	path = public
-	url = https://github.com/kaka-lin/kaka-lin.github.io.git
+	url = git@github.com:kaka-lin/kaka-lin.github.io.git
 [submodule "content/posts/Notes"]
 	path = content/posts/Notes
-	url = https://github.com/kaka-lin/Notes.git
+	url = git@github.com:kaka-lin/Notes.git

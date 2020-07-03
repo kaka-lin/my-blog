@@ -94,7 +94,7 @@ params:
   # profile
   profile:
     enabled: true # Whether to show profile bar
-    avatar: images/kaka.jpg
+    avatar: images/kaka_virtual.jpg
     gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
     author: Kaka Lin
     author_title: Software Engineer
@@ -105,9 +105,8 @@ params:
     social:
       links:
         github: https://github.com/kaka-lin
-        # twitter: https://twitter.com/
-        # facebook: /
-        # rss: /index.xml
+        facebook: https://www.facebook.com/profile.php?id=100001656484042
+        linkedin: https://www.linkedin.com/in/%E5%AE%B6%E8%B1%AA-%E6%9E%97-014a02116/
       link_tooltip: false # enable the social link tooltip, options: true, false
   # Site
   site:

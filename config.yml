@@ -1,6 +1,6 @@
 baseURL: https://kaka-lin.github.io/
 theme: hugo-theme-pure
-title: Kaka's Note
+title: Kaka's Blog
 defaultContentLanguage: en  # en/zh/...
 footnoteReturnLinkContents: ↩
 hasCJKLanguage: true
@@ -115,7 +115,7 @@ params:
       width: 40
       height: 40
       url: favicon.ico
-    title: Kaka's Note # page title
+    title: Kaka's Blog # page title
     favicon: favicon.ico
     board: <p></p> # 公告牌
 
@@ -128,8 +128,8 @@ params:
 
   # Comment
   comment:
-    type:  # type disqus/gitalk/valine
-    disqus: your_disqus_name # enter disqus shortname here
+    type: disqus # type disqus/gitalk/valine
+    disqus: kaka-blog # enter disqus shortname here
     gitalk: # gitalk. https://gitalk.github.io/
       owner: #必須. GitHub repository GitHub User or Organization。
       admin: #必须. GitHub repository 的所有者和合作者。
@@ -150,7 +150,6 @@ params:
   # Donate
   donate:
     enable: false
-
 
   # PV
   pv:

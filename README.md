@@ -1,6 +1,6 @@
 # My blog - Hugo Config
 
-This repo is my `Hugo` config about generate generate static site.
+This repo is my `Hugo` config about generate static site.
 
 ## Clone repo
 

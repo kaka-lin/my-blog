@@ -2,7 +2,9 @@
 
 This repo is about my blog that builds with `Hugo`.
 
-## Clone repo
+## Local development
+
+### Clone repo
 
 1. clone with submodule
 
@@ -16,13 +18,13 @@ $ git clone --recursive git@github.com:kaka-lin/my-blog-hugo.git
 $ git submodule update --init --recursive
 ```
 
-## Draft
+### Draft
 
 ```bash
 $ hugo server -D
 ```
 
-## Deploy
+### Deploy
 
 ```bash
 $ ./deploy.sh

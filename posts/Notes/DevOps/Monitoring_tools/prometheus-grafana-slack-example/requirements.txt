@@ -1,3 +1,0 @@
-flask
-locust
-prometheus_client

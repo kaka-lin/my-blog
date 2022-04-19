@@ -1,6 +1,0 @@
-[package]
-name = "function"
-version = "0.1.0"
-authors = ["kaka <vn503024@gmail.com>"]
-
-[dependencies]

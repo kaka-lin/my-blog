@@ -1,0 +1,167 @@
+<!doctype html><html lang=en><head><title>[Python] Ch1: Python Basics - 01 Python Basics - Kaka's Blog</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="Python Basics Interactive Shell Compiled language v.s. Interpreted language Compiled language (編譯語言) Through compiler convert source code into machine code and execute it. C/C++ Go Rust Interpreted language (直譯語言) Execute the code step-by-step. Python JavaScript Ruby PHP Python Interactive Shell Python is a Interpreted language. It means it excutes the code line by line. Python provides a Python Shell (Python"><meta name=generator content="Hugo 0.97.3 with theme pure"><title>[Python] Ch1: Python Basics - 01 Python Basics - Kaka's Blog</title><link rel=stylesheet href=https://kaka-lin.github.io/my-blog/css/style.min.c42838cb837ce405361b2d6e3a1e99ddcc6be6d8be2766f2fe32a151d5664f19.css><link rel=stylesheet href=https://kaka-lin.github.io/my-blog/css/custom.css async><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="[Python] Ch1: Python Basics - 01 Python Basics"><meta property="og:description" content="Python Basics Interactive Shell Compiled language v.s. Interpreted language Compiled language (編譯語言) Through compiler convert source code into machine code and execute it. C/C++ Go Rust Interpreted language (直譯語言) Execute the code step-by-step. Python JavaScript Ruby PHP Python Interactive Shell Python is a Interpreted language. It means it excutes the code line by line. Python provides a Python Shell (Python"><meta property="og:type" content="article"><meta property="og:url" content="https://kaka-lin.github.io/my-blog/2020/06/01_python_basics/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-06-10T00:00:00+00:00"><meta property="article:modified_time" content="2020-06-10T00:00:00+00:00"><meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/08/01_generator/"><meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/02_multiprocessing/"><meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/01_multithread/"><meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/06/02_flow_control/"><meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/06/03_list/"><meta itemprop=name content="[Python] Ch1: Python Basics - 01 Python Basics"><meta itemprop=description content="Python Basics Interactive Shell Compiled language v.s. Interpreted language Compiled language (編譯語言) Through compiler convert source code into machine code and execute it. C/C++ Go Rust Interpreted language (直譯語言) Execute the code step-by-step. Python JavaScript Ruby PHP Python Interactive Shell Python is a Interpreted language. It means it excutes the code line by line. Python provides a Python Shell (Python"><meta itemprop=datePublished content="2020-06-10T00:00:00+00:00"><meta itemprop=dateModified content="2020-06-10T00:00:00+00:00"><meta itemprop=wordCount content="935"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="[Python] Ch1: Python Basics - 01 Python Basics"><meta name=twitter:description content="Python Basics Interactive Shell Compiled language v.s. Interpreted language Compiled language (編譯語言) Through compiler convert source code into machine code and execute it. C/C++ Go Rust Interpreted language (直譯語言) Execute the code step-by-step. Python JavaScript Ruby PHP Python Interactive Shell Python is a Interpreted language. It means it excutes the code line by line. Python provides a Python Shell (Python"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://github.com/kaka-lin target=_blank><img class="img-circle img-rotate" src=https://kaka-lin.github.io/my-blog/images/kaka_virtual.jpg width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">Kaka Lin</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">Software Engineer</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taipei, Taiwan</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=Search>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder="Type something..." x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/my-blog/><i class="icon icon-home-fill"></i>
+<span class=menu-title>Home</span></a></li><li class="menu-item menu-item-categories"><a href=/my-blog/categories/><i class="icon icon-folder"></i>
+<span class=menu-title>Categories</span></a></li><li class="menu-item menu-item-books"><a href=/my-blog/series/><i class="icon icon-book-fill"></i>
+<span class=menu-title>Study Notes</span></a></li><li class="menu-item menu-item-tags"><a href=/my-blog/tags/><i class="icon icon-tags"></i>
+<span class=menu-title>Tags</span></a></li><li class="menu-item menu-item-about"><a href=/my-blog/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>About</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>Categories</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/asynchronous-programming/ class=category-list-link>asynchronous-programming</a><span class=category-list-count>6</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/c++/ class=category-list-link>c++</a><span class=category-list-count>2</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/data-science/ class=category-list-link>data-science</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/data-structure-and-algorithm/ class=category-list-link>data-structure-and-algorithm</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/database/ class=category-list-link>database</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/devops/ class=category-list-link>devops</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/go/ class=category-list-link>go</a><span class=category-list-count>8</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/leetcode/ class=category-list-link>leetcode</a><span class=category-list-count>51</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/os/ class=category-list-link>os</a><span class=category-list-count>3</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/python/ class=category-list-link>python</a><span class=category-list-count>12</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/qt/ class=category-list-link>qt</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://kaka-lin.github.io/my-blog/categories/react/ class=category-list-link>react</a><span class=category-list-count>2</span></li></ul></div></div><div class=widget><h3 class=widget-title>Tags</h3><div class=widget-body><ul class=tag-list><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/array/ class=tag-list-link>array</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/c++/ class=tag-list-link>c++</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/ci/cd-tools/ class=tag-list-link>ci/cd-tools</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/concurrency/ class=tag-list-link>concurrency</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/coroutine/ class=tag-list-link>coroutine</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/dsa/ class=tag-list-link>dsa</a><span class=tag-list-count>51</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/generator/ class=tag-list-link>generator</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/google-trends/ class=tag-list-link>google-trends</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/i/o-models/ class=tag-list-link>i/o-models</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/jupyterhub/ class=tag-list-link>jupyterhub</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/leetcode/ class=tag-list-link>leetcode</a><span class=tag-list-count>51</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/matplotlib/ class=tag-list-link>matplotlib</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/multi-processing/ class=tag-list-link>multi-processing</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/multi-thread/ class=tag-list-link>multi-thread</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/mysql/ class=tag-list-link>mysql</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/oop/ class=tag-list-link>oop</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/paint-system/ class=tag-list-link>paint-system</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/python/ class=tag-list-link>python</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/sqlalchemy/ class=tag-list-link>sqlalchemy</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://kaka-lin.github.io/my-blog/tags/sqlite/ class=tag-list-link>sqlite</a><span class=tag-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>Recent Posts</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://kaka-lin.github.io/my-blog/2021/01/multiple_inheritance/ class=title>[C++] 多重繼承 (Multiple Inheritance)</a></p><p class=item-date><time datetime="2021-01-11 00:00:00 +0000 UTC" itemprop=datePublished>2021-01-11</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://kaka-lin.github.io/my-blog/2021/01/i-_and_-i/ class=title>[C++] i++ 與 ++i 的差別</a></p><p class=item-date><time datetime="2021-01-10 00:00:00 +0000 UTC" itemprop=datePublished>2021-01-10</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://kaka-lin.github.io/my-blog/2020/10/01_paint_system/ class=title>[Qt] Qt's Paint System</a></p><p class=item-date><time datetime="2020-10-01 00:00:00 +0000 UTC" itemprop=datePublished>2020-10-01</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://kaka-lin.github.io/my-blog/2020/09/01_hello_react/ class=title>[React] 01 - Hello React</a></p><p class=item-date><time datetime="2020-09-26 00:00:00 +0000 UTC" itemprop=datePublished>2020-09-26</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://kaka-lin.github.io/my-blog/2020/09/02_hello_jsx/ class=title>[React] 02 - JSX 介紹</a></p><p class=item-date><time datetime="2020-09-26 00:00:00 +0000 UTC" itemprop=datePublished>2020-09-26</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>Catalogue</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/my-blog/2020/06/01_python_basics/>[Python] Ch1: Python Basics - 01 Python Basics</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://kaka-lin.github.io/my-blog/2020/06/01_python_basics/ class=article-date><time datetime="2020-06-10 00:00:00 +0000 UTC" itemprop=datePublished>2020-06-10</time></a></span>
+<span class=article-category><i class="icon icon-folder"></i>&nbsp;
+<a class=article-category-link href=/my-blog/categories/python/>Python</a>
+</span><span class=article-series><i class="icon icon-book"></i>&nbsp;
+<a class=article-series-link href=/my-blog/series/python/>Python</a></span>
+<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/my-blog/2020/06/01_python_basics/#comments class=article-comment-link>Comments</a></span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><h1 id=python-basics>Python Basics</h1><h2 id=interactive-shell>Interactive Shell</h2><h3 id=compiled-language-vs-interpreted-language>Compiled language v.s. Interpreted language</h3><ul><li><p>Compiled language (編譯語言)</p><p>Through compiler convert source code into machine code and execute it.</p><ul><li>C/C++</li><li>Go</li><li>Rust</li></ul></li><li><p>Interpreted language (直譯語言)</p><p>Execute the code step-by-step.</p><ul><li>Python</li><li>JavaScript</li><li>Ruby</li><li>PHP</li></ul></li></ul><h3 id=python-interactive-shell>Python Interactive Shell</h3><p>Python is a Interpreted language. It means it excutes the code line by line.</p><p>Python provides a <code>Python Shell (Python Interactive Shell)</code>
+which is used to execute a single Python command and get the result.</p><ol><li>Open terminal</li></ol><pre><code class=language-bash># or python3
+$ python
+</code></pre><ol start=2><li>Then you will see the figure below</li></ol><p><img src=images/python_shell.png alt>
+<img src=/images/python/python_shell.png alt></p><ol start=3><li>Now, you can type a single statement and get the result</li></ol><p><img src=images/python_shell_2.png alt>
+<img src=/images/python/python_shell_2.png alt></p><h2 id=python-comments>Python Comments</h2><p>Comments can be used to explain code, make the code more readable.</p><ul><li><code>#</code>: single line</li><li><code>""" """</code>: multiple lines</li></ul><p>Examples:</p><pre><code class=language-python># This is a comment
+print('Hello world')
+
+&quot;&quot;&quot;
+This is a comment
+written in more than just one line
+&quot;&quot;&quot;
+print('Hello world')
+</code></pre><h2 id=python-expressions-math-operators>Python Expressions: Math Operators</h2><p><img src=images/common_operators.png alt>
+<img src=/images/python/common_operators.png alt></p><pre><code class=language-python># Addition: Integer
+2 + 3 # 5
+</code></pre><pre><code class=language-python># Addition: Floating point &amp; Floating point -&gt; Floating point
+2.0 + 3.0 # 5.0
+</code></pre><pre><code class=language-python># Addition: Floating point &amp; Integet -&gt; Floating point
+2.0 + 3 # 5.0
+</code></pre><pre><code class=language-python># Multiplication
+3 * 2 # 6
+</code></pre><pre><code class=language-python># Exponent
+2 ** 5 # 32
+</code></pre><h3 id=exercise>Exercise</h3><pre><code>Suppose you have $100, which you can invets with a 10% return each year.
+After one year, it's 100 x 1.1 = 110 dollars,
+and after two years it's 100 x 1.1 x 1.1 = 121.
+</code></pre><p>Add code to calculate how much money you end up with after 7 years, and print the result.</p><pre><code class=language-python># Click below for a solution
+
+return_money = 100 * (1.1 ** 7)
+return_money
+</code></pre><pre><code>[Out]: 194.87171000000012
+</code></pre><h2 id=display-the-output>Display the Output</h2><p>Builtin-in function <code>print()</code> serves as an output statement in Python.</p><pre><code class=language-python># type 1.
+print(&quot;Hello World!&quot;)
+
+# type 2.
+print(&quot;Hello&quot; + &quot; World1&quot;)
+
+# type 3.
+text = &quot;world!&quot;
+print(&quot;Hello&quot;, text)
+
+# type 4.
+text = &quot;world!&quot;
+print(&quot;Hello {}&quot;.format(text))
+</code></pre><pre><code>Hello World!
+Hello World1
+Hello world!
+Hello world!
+</code></pre><h2 id=getting-the-users-input>Getting the User&rsquo;s Input</h2><p>The <code>input()</code> function is part of the core library of standard Python distribution.</p><p>It reads the key strokes as a string object which can be referred to by a variable having a suitable name.</p><pre><code class=language-python>_input = input()
+
+print(&quot;input: {}, type: {}&quot;.format(_input, type(_input)))
+</code></pre><pre><code>123
+input: 123, type: &lt;class 'str'&gt;
+</code></pre><pre><code class=language-python>name = input(&quot;Enter your name: &quot;)
+print(&quot;Welcome, {}&quot;.format(name))
+</code></pre><pre><code>Enter your name: kaka
+Welcome, kaka
+</code></pre><h2 id=variables>Variables</h2><p>Variables are containers for storing data values.
+In order to conveniently repeatedly refer to the store value, it is given a suitable name.</p><ul><li>Specific, case-sensitive name</li><li>Call up value through variable name</li></ul><p>A value is bound to a name by the assignment operator <code>=</code></p><h3 id=example>Example</h3><p>Height 1.75m, Weight 68.7kg, Calculate BMI</p><pre><code class=language-python>height = 1.75
+weight = 68.7
+
+bmi = weight / (height ** 2)
+print(&quot;BMI: {}&quot;.format(bmi))
+</code></pre><h2 id=data-types>Data Types</h2><p>Variables can store data of different types, and different types can do different things.</p><p>A <code>data type</code> is a category for values, and every value belongs to exactly one data type.</p><p>Python has the following standard or built-in data types:</p><p><img src=images/data_type.png alt>
+<img src=/images/python/data_type.png alt></p><h3 id=numeric>Numeric</h3><ul><li>Integets (<code>int</code>): 1, 0, 1</li><li>Float (<code>float</code>): -1.25, -0.5, 0.0, 1.25</li><li>Complex (<code>complex</code>): 1j</li></ul><h3 id=boolean>Boolean</h3><p>Data with one of two built-in values <code>True</code> or <code>False</code>.</p><h3 id=sequence>Sequence</h3><ul><li><p>Strings (<code>str</code>):</p><p>String literals in python are surrounded by either single quotation marks, or double quotation marks.</p><p>&lsquo;Hello&rsquo; is the same as &ldquo;Hello&rdquo;.</p><p>Example:</p><pre><code class=language-python>a = 'Hello Wrold!'
+</code></pre></li><li><p><code>list</code>:</p><p>List is a collention which is <code>ordered</code> and <code>changeable</code>.
+Allow duplicate members.</p><p>Example:</p><pre><code class=language-python>a = ['Hello', 'World', '!']
+</code></pre></li><li><p><code>tuple</code>:
+Tuple is a collention which is <code>ordered</code> and <code>unchangeable</code>.
+Allow duplicate members.</p><p>Example:</p><pre><code class=language-python>a = ('Hello', 'World', '!')
+</code></pre></li></ul><h3 id=dictionary>Dictionary</h3><p>Dictionary is a collention which is <code>unordered</code>, <code>changeable</code> and <code>indexed</code>.
+No duplicate members.</p><p>Example:</p><pre><code class=language-python>a = {&quot;name&quot;: &quot;kaka&quot;, &quot;age&quot;: 28}
+</code></pre><h2 id=storing-values-in-variables>Storing Values in Variables</h2><h3 id=assignment>Assignment</h3><p>在程式語言的世界裡，<code>=</code>代表的是指定(assignment)的意思</p><p>例如：<code>x = 7</code> 就是把<code>7這個物件指定給x這個變數</code>，換句話說也就是把<code>x這個變數指向(綁定)7這個物件</code>，如下圖所示：</p><pre><code class=language-python>x = 7
+x
+</code></pre><pre><code>[Out]: 7
+</code></pre><pre><code class=language-python>x = 7
+y = x
+y
+</code></pre><pre><code>[Out]: 7
+</code></pre><pre><code class=language-python>x = 8
+print(&quot;x =&quot;, x, &quot;y =&quot;, y)
+</code></pre><pre><code>[Out]: x = 8 y = 7
+</code></pre><h3 id=pyhton-assignmes-bindding>Pyhton Assignmes: Bindding</h3><pre><code class=language-python># Fist, we see an example as below:
+x = [1, 2, 3]
+y = x
+x[1] = 100
+print(&quot;x: &quot;, x)
+print(&quot;y: &quot;, y)
+</code></pre><pre><code>x:  [1, 100, 3]
+y:  [1, 100, 3]
+</code></pre><h4 id=explain>Explain</h4><p>Python的<code>=</code>實際上是 <code>binds an object reference to an object</code></p><p><img src=images/object_references.png alt>
+<img src=/images/python/object_references.png alt></p><pre><code class=language-python>x = [1, 2, 3]
+</code></pre><pre><code class=language-bash>X ----&gt; [1 2 3]
+</code></pre><hr><pre><code class=language-python>y = x
+</code></pre><pre><code class=language-bash>x ---&gt; [1 2 3]
+       ^
+       |
+y ------
+</code></pre><hr><pre><code class=language-python>x[1] = 100
+</code></pre><pre><code class=language-bash>x ---&gt; [100 2 3]
+       ^
+       |
+y ------
+</code></pre><h2 id=your-first-program>Your First Program</h2><ul><li>Referece: <a href=https://automatetheboringstuff.com/>Automate the Boring Stuff with Python</a></li></ul><pre><code class=language-python># This program says hello and asks for my name and age.
+print('Hello World!')
+print('What is your name?')
+print('------------------')
+name = input()
+print('It is good to meet you, ' + name)
+print('The length of your name is: ', len(name))
+print('What is your age?')
+age = input()
+print('------------------')
+print('You will be ' + str(int(age) + 1) + ' in a year')
+</code></pre><pre><code>Hello World!
+What is your name?
+------------------
+kaka
+It is good to meet you, kaka
+The length of your name is:  4
+What is your age?
+28
+------------------
+You will be 29 in a year
+</code></pre></div><div class=article-footer><blockquote class=mt-2x><ul class="post-copyright list-unstyled"><li class="post-copyright-link hidden-xs"><strong>Permalink:</strong>
+<a href=https://kaka-lin.github.io/my-blog/2020/06/01_python_basics/ title="[Python] Ch1: Python Basics - 01 Python Basics" target=_blank rel=external>https://kaka-lin.github.io/my-blog/2020/06/01_python_basics/</a></li><li class=post-copyright-license><strong>License：</strong><a href=https://creativecommons.org/licenses/by/4.0/deed.zh_TW target=_blank rel=external>CC BY 4.0</a></li></ul></blockquote><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://github.com/kaka-lin target=_blank class="img-burn thumb-sm visible-lg"><img src=https://kaka-lin.github.io/my-blog/images/kaka_virtual.jpg class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading><a href=https://github.com/kaka-lin target=_blank><span class=text-dark>Kaka Lin</span><small class=ml-1x>Software Engineer</small></a></h3><div>AIoT</div></div></figure></div></div></div></article><section id=comments><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://kaka-lin.github.io/my-blog/2020/06/02_flow_control/ title="[Python] Ch1: Python Basics - 02 Flow Control"><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;Older</span></a></li><li class=next><a href=https://kaka-lin.github.io/my-blog/2020/06/938_range_sum_of_bs/ title="[LeetCode] 938 Range Sum Of Bs"><span>Newer&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=Catalogue role=button><span>[&nbsp;</span><span>Catalogue</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class=bar-right></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href="https://www.facebook.com/profile.php?id=100001656484042" target=_blank title=facebook data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li><li><a href=https://github.com/kaka-lin target=_blank title=github data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li><li><a href=https://www.linkedin.com/in/%E5%AE%B6%E8%B1%AA-%E6%9E%97-014a02116/ target=_blank title=linkedin data-toggle=tooltip data-placement=top><i class="icon icon-linkedin"></i></a></li></ul><div class=copyright>Copyright
+&copy;2020 -
+2022<div class=publishby>Theme by <a href=https://github.com/xiaoheiAh target=_blank>xiaoheiAh </a>base on<a href=https://github.com/xiaoheiAh/hugo-theme-pure target=_blank> pure</a>.</div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script>
+<script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js></script>
+<script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/python.min.js defer></script>
+<script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/javascript.min.js defer></script>
+<script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js defer></script><script>hljs.configure({tabReplace:"    ",classPrefix:''}),hljs.initHighlightingOnLoad()</script>
+<script src=https://kaka-lin.github.io/my-blog/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js></script>
+<script src=https://kaka-lin.github.io/my-blog/js/plugin.min.5c7ae0f9d1f515776ebc5e20dd06a3552ddc2a373d481d1c03bd7dfa574bec41.js></script>
+<script>(function(e){var t={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)"},ROOT_URL:"https://kaka-lin.github.io/my-blog",CONTENT_URL:"https://kaka-lin.github.io/my-blog/searchindex.json "};e.INSIGHT_CONFIG=t})(window)</script><script type=text/javascript src=https://kaka-lin.github.io/my-blog/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js defer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script>
+<script>tocbot.init({tocSelector:".js-toc",contentSelector:".js-toc-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0})</script><script>var disqus_config=function(){this.page.url="https://kaka-lin.github.io/my-blog/2020/06/01_python_basics/",this.page.identifier="kaka-blog"};(function(){var e=document,t=e.createElement("script");t.src="//kaka-blog.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script></body></html>

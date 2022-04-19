@@ -5,7 +5,7 @@ date: 2020-06-07
 author: "kaka"
 ---
 
-![profile](/images/kaka.jpg)
+![profile](/my-blog/images/kaka.jpg)
 
 Hi, I'm kaka, from Taiwan. :wave:
 

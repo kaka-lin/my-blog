@@ -1,7 +1,3 @@
-
 [submodule "themes/hugo-theme-pure"]
 	path = themes/hugo-theme-pure
 	url = git@github.com:kaka-lin/hugo-theme-pure.git
-[submodule "content/posts/Notes"]
-	path = content/posts/Notes
-	url = git@github.com:kaka-lin/Notes.git

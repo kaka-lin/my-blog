@@ -1,4 +1,4 @@
-baseURL: https://kaka-lin.github.io/
+baseURL: https://kaka-lin.github.io/my-blog-hugo
 theme: hugo-theme-pure
 title: Kaka's Blog
 defaultContentLanguage: en  # en/zh/...

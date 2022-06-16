@@ -13,6 +13,8 @@ categories: [Data Structure and Algorithm]
 ![](/my-blog/images/dsa/tree/kdtree/kd-tree.png)
 https://www.youtube.com/watch?v=Glp7THUpGow
 
+實作完整版，請看 [Github](https://github.com/kaka-lin/Notes/blob/master/DSA/Tree/KD%20Tree/kdtree.py)
+
 ## Introdction of KD Tree
 
 二元搜尋樹就是將資料按造大小來建立樹，規則為:
@@ -232,7 +234,7 @@ dataset:
 
 ### 實作
 
-Python: [kdtree.py](kdtree.py)
+Python: [kdtree.py](https://github.com/kaka-lin/Notes/blob/master/DSA/Tree/KD%20Tree/kdtree.py)
 ```python
 def build_kdtree(self, points, depth=0):
     if len(points) <= 0:
@@ -304,7 +306,7 @@ KD 演算法的核心技巧在於剪枝，如下圖所示:
 
 ### 實作
 
-Python: [kdtree.py](kdtree.py)
+Python: [kdtree.py](https://github.com/kaka-lin/Notes/blob/master/DSA/Tree/KD%20Tree/kdtree.py)
 ```python
 def find_nearest(point, root=None, depth=0):
     # 1. 從根節點開始搜尋

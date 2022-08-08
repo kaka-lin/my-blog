@@ -7,12 +7,16 @@ categories: [Data Structure and Algorithm]
 
 # Longest Palindromic Substring
 
-My Github: [Longest Palindromic Substring](https://github.com/kaka-lin/Notes/tree/master/DSA/Dynamic%20Programming/longest_palindromic_substring)
+- Leetcode: [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
+- My solution: [kaka-lin/leetcode/00005_longest-palindromic-substring](https://github.com/kaka-lin/leetcode/blob/main/leetcode/00005_longest-palindromic-substring/5-longest-palindromic-substring.py)
+
+The detail of explain of solution please see as below.
+
+```
+思路與解法說明請看下面。
+```
 
 ## Question
-
-- Leetcode: [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
-
 
 Given a string `s`, return *the longest palindromic substring* in `s`
 
@@ -37,6 +41,10 @@ Output: "bb"
 - `s` consist of only digits and English letters.
 
 ## Solution
+
+- [Method 1: Brute-Force](#method-1-brute-force-time-limit-exceeded)
+- [Method 2: Dynamic Programming](#method-2-dynamic-programming)
+- [Method 3: Expand Around Center](#method-3-expand-around-center)
 
 ### Method 1: Brute-Force (Time Limit Exceeded)
 
@@ -77,17 +85,17 @@ def isPalindrome(s):
 
 - Time-Complexity: $O(n^3)$, `Time Limit Exceeded`
 
-## Method 2: Dynamic Programming
+### Method 2: Dynamic Programming
 
 [Python code](#implementing-with-python) 直接看這邊。
 
-### Step 1: Characterize an OPT Solution:
+#### Step 1. Characterize an OPT Solution
 
 - Subproblems:
 
     - if s[i~j] is a palindrome, s[i+1~j-1] is also a palindrome.
 
-    $P(i,j) = (P(i+1,j−1)\ and\ S[i] == S[j])$
+        $$P(i,j) = (P(i+1,j−1)\ and\ S[i] == S[j])$$
 
 - Optimal substructure: suppose we already knew that substr `"bab"` is a palindrome:
   - Case 1: `"ababa"` must be a palindrome
@@ -98,7 +106,7 @@ def isPalindrome(s):
 
     因為左右兩端的字母不是一樣的
 
-### Step 2: Recursively Define the Value of an OPT Solution
+#### Step 2: Recursively Define the Value of an OPT Solution
 
 - Base case:
   - Odd: $P(i, i) = True$
@@ -120,32 +128,32 @@ def isPalindrome(s):
     Substring is a palindrome and the two left and right end letters are the same
     ```
 
-### Step3: Compute Value of an OPT Solution
+#### Step3: Compute Value of an OPT Solution
 
-#### Bottom-Up Tabulation
+##### Bottom-Up Tabulation
 
-Step 1. 建立一個 `N x N` 的表格，如下所示:
+1. 建立一個 `N x N` 的表格，如下所示:
 
-![](images/DP_1.png)
-![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_1.png)
+    ![](images/DP_1.png)
+    ![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_1.png)
 
-Step 2. Preporcessing: Base case
+2. Preporcessing: Base case
 
-在表格中，先填上 Base case 的值 (奇數與偶數情況)，如下圖所示:
+    在表格中，先填上 Base case 的值 (奇數與偶數情況)，如下圖所示:
 
-![](images/DP_2.png)
-![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_2.png)
+    ![](images/DP_2.png)
+    ![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_2.png)
 
-Step 3. Compute Value
+3. Compute Value
 
-Recursive Case:
+    - Recursive Case:
 
-$$P(i,j) = (P(i+1,j−1)\ and\ S[i] == S[j])$$
+        $$P(i,j) = (P(i+1,j−1)\ and\ S[i] == S[j])$$
 
-假設 S[i~j] 為回文，那個 S[i+1~j-1] 也必然為回文，依照表格去尋找相對應的值，判斷是否為回文，如下圖所示:
+    假設 S[i~j] 為回文，那個 S[i+1~j-1] 也必然為回文，依照表格去尋找相對應的值，判斷是否為回文，如下圖所示:
 
-![](images/DP_3.png)
-![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_3.png)
+    ![](images/DP_3.png)
+    ![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_3.png)
 
 ##### 表格 loop 方向
 
@@ -154,11 +162,11 @@ $$P(i,j) = (P(i+1,j−1)\ and\ S[i] == S[j])$$
 ![](images/DP_4.png)
 ![](/my-blog/images/dsa/dp/longest_palindromic_substring/DP_4.png)
 
-### Implementing with Python
+#### Implementing with Python
 
 ```python
 # Bottom-Up with Tabulation
-def longestPalindrome(self, s):
+def longestPalindrome(s):
     n = len(s)
     left = right = 0
     max_length = 0
@@ -186,12 +194,49 @@ def longestPalindrome(self, s):
         for i in range(j-1): # Start
             if s[i] == s[j] and p_dp[i+1][j-1]:
                 p_dp[i][j] = True
-                if j - i +1 > max_length:
+                if j - i + 1 > max_length:
                     left = i
                     right = j+1
                     max_length = j - i + 1
 
     return s[left:right]
+```
+
+### Method 3: Expand Around Center
+
+In fact, we could solve it in O(n^2) time using only constant space.
+
+因為回文特性是繞著中心鏡像出去，所以我們可以從中心擴展(Expand)出去，如下圖所示:
+
+![](images/expand_around_center_1.png)
+![](/my-blog/images/dsa/dp/longest_palindromic_substring/expand_around_center_1.png)
+
+#### Implementing with Python
+
+從中心擴展:
+
+```python
+# get the longest palindrome, l, r are the middle indexes
+# from inner to outer
+def palindromeAt(s, l, r):
+    while l >= 0 and r < len(s) and s[l] == s[r]:
+        l -= 1
+        r += 1
+
+    return s[l+1:r]
+```
+
+分別考慮奇數與偶數的情況，別且都從中心擴展查找最長回文，
+並且是比較看誰最長，如下:
+
+```python
+def longestPalindrome(s: str) -> str:
+    ans = ""
+    for i in range(len(s)):
+        odd = palindromeAt(s, i, i) # 單數框
+        even = palindromeAt(s, i, i+1) # 偶數框
+        ans = max(ans, odd, even, key=len)
+    return ans
 ```
 
 ## Refernece

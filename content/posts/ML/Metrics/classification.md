@@ -1,11 +1,11 @@
 ---
-title: "[ML] 分類指標 (Classification Metrics)"
-date: 2022-08-16
-tags: [ML, DL, classification, mterics]
-categories: [ML]
+title: "[Classification] 分類指標 (Classification Metrics)"
+date: 2022-08-15
+tags: [Machine Learning, Deep Learning, Classification, Metrics]
+categories: [Machine Learning/Deep Learning]
 ---
 
-#  分類指標 (Classification Metrics)
+# 分類指標 (Classification Metrics)
 
 ## Confuion Matrix (混淆矩陣)
 

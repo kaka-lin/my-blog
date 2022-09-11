@@ -1,7 +1,8 @@
 ---
 title: "[Go] Ch1: Go Basics - 08 Concurrency"
 date: 2020-08-26
-series: [Go]
+tags: [Concurrency]
+series: [Asynchronous Programming]
 categories: [Go]
 ---
 

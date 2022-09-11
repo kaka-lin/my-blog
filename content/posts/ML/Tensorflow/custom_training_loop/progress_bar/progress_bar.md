@@ -1,8 +1,9 @@
 ---
 title: "[Tensorflow] Progress bar of custom training loop"
 date: 2022-09-02
-tags: [Tensorflow, Machine Learning, Deep Learning, progressbar]
-categories: [Tensorflow, Machine Learning/Deep Learning]
+tags: [Automatic differentiation, progressbar]
+series: [Machine Learning, TensorFlow]
+categories: [ML/DL]
 ---
 
 # Progress bar of Tensorflow 2's custom training loop

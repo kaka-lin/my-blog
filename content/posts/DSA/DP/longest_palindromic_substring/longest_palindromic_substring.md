@@ -1,7 +1,8 @@
 ---
 title: "[DSA] Longest Palindromic Substring | Dynamic Programming"
 date: 2022-08-07
-tags: [Dynamic Programming, String]
+tags: [Dynamic Programming]
+series: [Data Structure and Algorithm]
 categories: [Data Structure and Algorithm]
 ---
 

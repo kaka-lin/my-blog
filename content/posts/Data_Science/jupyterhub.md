@@ -1,7 +1,7 @@
 ---
 title: "[DS] Build JupyterHub with docker"
 date: 2020-08-14
-tags: [JupyterHub]
+tags: [Jupyter]
 categories: [Data Science]
 ---
 

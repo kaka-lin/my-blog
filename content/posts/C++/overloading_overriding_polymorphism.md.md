@@ -1,7 +1,7 @@
 ---
 title: "[C++] Overloading(重載) & Overriding (覆載) & Plymorphism (多型)"
 date: 2022-08-12
-tags: [C++]
+tags: [OOP]
 categories: [C++]
 ---
 
@@ -73,7 +73,6 @@ This is from Dog
 This is from Cat
 This is from Animal
 ```
-
 
 ## Polymorphism (多型): `以父類建立具有子類方法的物件`
 

@@ -1,6 +1,6 @@
 ---
 title: "[Python] Ch1: Python Basics - 03 List"
-date: 2020-06-10
+date: 2020-06-12
 series: [Python]
 categories: [Python]
 ---

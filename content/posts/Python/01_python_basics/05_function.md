@@ -1,6 +1,6 @@
 ---
 title: "[Python] Ch1: Python Basics - 05 Function"
-date: 2020-06-10
+date: 2020-06-14
 series: [Python]
 categories: [Python]
 ---

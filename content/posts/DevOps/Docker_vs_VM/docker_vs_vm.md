@@ -1,11 +1,11 @@
 ---
 title: "[Docker] 容器與虛擬機"
 date: 2022-06-09
-tags: [CI/CD Tools]
-categories: [DevOps]
+tags: [Docker]
+categories: [DevOps, Docker]
 ---
 
-# Docker - 容器與虛擬機
+# Docker - 容器 (Container) 與虛擬機 (VM)
 
 ![](images/docker_vs_vm.png)
 ![](/my-blog/images/devops/docker_vs_vm/docker_vs_vm.png)

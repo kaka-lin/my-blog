@@ -1,8 +1,9 @@
 ---
 title: "[PyTorch] Tensors (張量)"
 date: 2022-08-17
-tags: [PyTorch, Machine Learning, Deep Learning]
-categories: [PyTorch, Machine Learning/Deep Learning]
+tags: []
+series: [Machine Learning, PyTorch]
+categories: [ML/DL]
 ---
 
 

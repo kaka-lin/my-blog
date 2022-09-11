@@ -2,6 +2,7 @@
 title: "[DSA] KD Tree"
 date: 2022-06-16
 tags: [Tree]
+series: [Data Structure and Algorithm]
 categories: [Data Structure and Algorithm]
 ---
 

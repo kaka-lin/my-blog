@@ -1,8 +1,9 @@
 ---
 title: "[PyTorch] Datasets & DataLoaders"
 date: 2022-08-18
-tags: [PyTorch, Machine Learning, Deep Learning]
-categories: [PyTorch, Machine Learning/Deep Learning]
+tags: []
+series: [Machine Learning, PyTorch]
+categories: [ML/DL]
 ---
 
 # Datasets & DataLoaders

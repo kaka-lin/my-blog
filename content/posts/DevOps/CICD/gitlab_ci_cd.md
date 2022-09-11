@@ -1,23 +1,11 @@
 ---
 title: "[DevOps] Gitlab CI/CD"
 date: 2020-06-10
-tags: [CI/CD Tools]
+tags: [CI/CD]
 categories: [DevOps]
 ---
 
 # GitLab CI/CD
-
-- [GitLab CI/CD](#gitlab-cicd)
-  - [How GitLab CI/CD works](#how-gitlab-cicd-works)
-  - [Getting started with GitLab CI/CD](#getting-started-with-gitlab-cicd)
-    - [1. Build a Project](#1-build-a-project)
-    - [2. Configuring GitLab Runners](#2-configuring-gitlab-runners)
-      - [2-1. Use Shared Runners](#2-1-use-shared-runners)
-      - [2-2. Set up a Specific Runners](#2-2-set-up-a-specific-runners)
-        - [Exmaple with Docker](#exmaple-with-docker)
-      - [2-3. Introduction to Shared, Specific and Group Runners [Optional]](#2-3-introduction-to-shared-specific-and-group-runners-optional)
-    - [3. Creating a `.gitlab-ci.yml` file](#3-creating-a-gitlab-ciyml-file)
-    - [4. Results](#4-results)
 
 [GitLab CI/CD](https://docs.gitlab.com/ee/ci/README.html) is a powerful tool built into GitLab that allows you to apply all the continuous methods to your software with no third-party application or integration needed.
 

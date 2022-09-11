@@ -1,9 +1,9 @@
 ---
 title: "[Python] Ch3: Coroutine - 01 Generator"
 date: 2020-08-05
-series: [Python]
+series: [Python, Asynchronous Programming]
 tags: [Coroutine, Generator]
-categories: [Python, Asynchronous Programming]
+categories: [Python]
 ---
 
 `Generator` functions allow you to declare a function that behaves like an `iterator`.

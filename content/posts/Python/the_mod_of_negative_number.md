@@ -1,7 +1,7 @@
 ---
 title: "[Python] 負數取餘數"
 date: 2022-06-08
-tags: [Python]
+series: [Python]
 categories: [Python]
 ---
 

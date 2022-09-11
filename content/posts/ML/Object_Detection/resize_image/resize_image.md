@@ -1,8 +1,9 @@
 ---
 title: "[Object Detection] YOLO Image Preprocessing: resize or letterbox"
 date: 2022-09-06
-tags: [Object Detection, YOLO, letterbox, Deep Learning]
-categories: [Object Detection, YOLO Series, Machine Learning/Deep Learning]
+tags: [Object Detection, letterbox]
+series: [Machine Learning, YOLO Series]
+categories: [ML/DL]
 ---
 
 # Resize image, Keeping Aspect Ratio or not

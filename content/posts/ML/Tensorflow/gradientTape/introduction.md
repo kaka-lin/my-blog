@@ -1,8 +1,9 @@
 ---
 title: "[Tensorflow] Introduction to tf.GradientTape and automatic differentiation"
 date: 2022-08-31
-tags: [Tensorflow, Machine Learning, Deep Learning]
-categories: [Tensorflow, Machine Learning/Deep Learning]
+tags: [Automatic differentiation]
+series: [Machine Learning, TensorFlow]
+categories: [ML/DL]
 ---
 
 # GradientTape

@@ -1,7 +1,7 @@
 ---
 title: "[C++] i++ 與 ++i 的差別"
 date: 2021-01-10
-tags: [C++]
+tags: []
 categories: [C++]
 ---
 
@@ -23,7 +23,7 @@ categories: [C++]
 
 ## Example
 
-```C
+```c++
 int x;
 int y;
 

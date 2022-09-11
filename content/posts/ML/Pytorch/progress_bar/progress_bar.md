@@ -1,8 +1,9 @@
 ---
 title: "[PyTorch] Various Progress Bar in PyTorch"
 date: 2022-08-19
-tags: [PyTorch, Machine Learning, Deep Learning, progressbar]
-categories: [PyTorch, Machine Learning/Deep Learning]
+tags: [progressbar]
+series: [Machine Learning, PyTorch]
+categories: [ML/DL]
 ---
 
 # Pytorch Progress bar

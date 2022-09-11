@@ -2,7 +2,8 @@
 title: "[OS] Coroutine (協程)"
 date: 2020-08-04
 tags: [Coroutine]
-categories: [OS, Asynchronous Programming]
+series: [Asynchronous Programming]
+categories: [OS]
 ---
 
 先來看一下Wiki上關於Coroutine的解釋:

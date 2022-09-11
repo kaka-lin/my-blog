@@ -1,8 +1,9 @@
 ---
 title: "[Tensorflow] Custom Training Loop"
 date: 2022-09-01
-tags: [Tensorflow, GradientTape, Machine Learning, Deep Learning]
-categories: [Tensorflow, Machine Learning/Deep Learning]
+tags: [Automatic differentiation]
+series: [Machine Learning, TensorFlow]
+categories: [ML/DL]
 ---
 
 # Custom Training Loop

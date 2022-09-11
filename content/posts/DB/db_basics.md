@@ -1,6 +1,7 @@
 ---
 title: "[DB] Database Basics"
 date: 2020-06-10
+tags: []
 categories: [Database]
 ---
 

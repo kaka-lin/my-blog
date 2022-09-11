@@ -75,7 +75,7 @@ params:
   
   # languages: https://github.com/highlightjs/highlight.js/tree/master/src/languages
   highlightjs:
-    langs: ["python", "javascript", "go"]
+    langs: ["python", "javascript", "go", "c", "cpp"]
 
   # Allows you to specify an override stylesheet
   # put custom.css in $hugo_root_dir/static/
@@ -184,5 +184,6 @@ params:
   # Sidebar only the following widgets. you can remove any you don't like it.
   widgets:
     - category
+    - series
     - tag
     - recent_posts

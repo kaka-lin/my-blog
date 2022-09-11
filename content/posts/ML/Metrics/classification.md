@@ -1,8 +1,9 @@
 ---
 title: "[Classification] 分類指標 (Classification Metrics)"
 date: 2022-08-15
-tags: [Machine Learning, Deep Learning, Classification, Metrics]
-categories: [Machine Learning/Deep Learning]
+tags: [Classification, Metrics]
+series: [Machine Learning]
+categories: [ML/DL]
 ---
 
 # 分類指標 (Classification Metrics)

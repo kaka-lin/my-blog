@@ -1,7 +1,7 @@
 ---
 title: "[Python] Ch0: Install Python"
-date: 2020-05-23
-tags: [Python]
+date: 2020-05-22
+series: [Python]
 categories: [Python]
 ---
 

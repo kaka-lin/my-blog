@@ -1,6 +1,6 @@
 ---
 title: "[DB] Mysql Basics"
-date: 2020-06-10
+date: 2020-06-11
 tags: [MySQL]
 categories: [Database]
 ---

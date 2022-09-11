@@ -1,8 +1,9 @@
 ---
 title: "[Object Detection] 目標檢測評估指標 (Object Detection Metrics)"
 date: 2022-08-16
-tags: [Machine Learning, Deep Learning, Object Detection, Metrics]
-categories: [Machine Learning/Deep Learning, Object Detection]
+tags: [Object Detection, Metrics]
+series: [Machine Learning]
+categories: [ML/DL]
 ---
 
 # 目標檢測評估指標 (Object Detection Metrics)

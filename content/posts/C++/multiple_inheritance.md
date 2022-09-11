@@ -1,7 +1,7 @@
 ---
 title: "[C++] 多重繼承 (Multiple Inheritance)"
 date: 2021-01-11
-tags: [C++, OOP]
+tags: [OOP]
 categories: [C++]
 ---
 
@@ -22,7 +22,7 @@ Virtual base classes are used in virtual inheritance, is a way of preventing mul
 
 Consider the follow scenario:
 
-```c
+```c++
 class A { public: void func() {} };
 class B : public A {};
 class C : public A {};
@@ -52,7 +52,7 @@ When you want to access any data or function of class A by class D, ambiguity ar
 
 Virtual inheritance is there to solve this problem. When a base class is specified as a virtual base, it can `acts as an indirect base more than once without duplication of its data members. A single copy of its data members is shared by all the base classes that use virtual base.`
 
-```c
+```c++
 class B : virtual public A {};
 class C : virtual public A {};
 ```
@@ -61,7 +61,7 @@ This means that there is only `"one instance"` of A included in the hierarchy.
 
 ### Example
 
-```c
+```c++
 #include <iostream>
 
 using namespace std;

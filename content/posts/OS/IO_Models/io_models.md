@@ -2,7 +2,8 @@
 title: "[OS] I/O Models: 同步、非同步、阻塞、非阻塞"
 date: 2020-07-22
 tags: [I/O Models]
-categories: [OS, Asynchronous Programming]
+series: [Asynchronous Programming]
+categories: [OS]
 ---
 
 在開發I/O相關程式時常常會遇到以下這四種名詞:

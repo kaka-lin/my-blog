@@ -1,7 +1,7 @@
 ---
 title: "[Qt] Qt's Paint System"
 date: 2020-10-01
-tags: [Paint System]
+tags: []
 categories: [Qt]
 ---
 

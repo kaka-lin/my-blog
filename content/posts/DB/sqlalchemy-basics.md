@@ -1,7 +1,7 @@
 ---
 title: "[DB] Sqlalchemy Basics"
-date: 2020-06-10
-tags: [SQLAlchemy]
+date: 2020-06-12
+tags: [ORM, SQLAlchemy]
 categories: [Database]
 ---
 

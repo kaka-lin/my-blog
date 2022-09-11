@@ -1,6 +1,6 @@
 ---
 title: "[Python] Ch1: Python Basics - 04 Dictionary"
-date: 2020-06-10
+date: 2020-06-13
 series: [Python]
 categories: [Python]
 ---

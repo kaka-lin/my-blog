@@ -1,7 +1,7 @@
 ---
 title: "[DSA] Matrix Chain Multiplication | Dynamic Programming"
 date: 2022-08-13
-tags: [Dynamic Programming]
+tags: [DP]
 series: [Data Structure and Algorithm]
 categories: [Data Structure and Algorithm]
 ---

@@ -30,9 +30,9 @@
         return search_bst(root.right, target)
     else:
         return root.val
-</code></pre><ul><li>worst case: O(n)</li></ul><h2 id=types-of-binary-search-tree>Types of Binary Search Tree</h2><table><thead><tr><th style=text-align:center>#</th><th style=text-align:center>arbitrary BST</th><th style=text-align:center>Red-Blue Tree</th><th style=text-align:center>AVL Tree</th><th style=text-align:center>Completed BST</th></tr></thead><tbody><tr><td style=text-align:center>worst search time</td><td style=text-align:center>O(n)</td><td style=text-align:center>O(log n)</td><td style=text-align:center>O(log n)</td><td style=text-align:center>O(log n)</td></tr><tr><td style=text-align:center>maintenance after insertion</td><td style=text-align:center>O(1)</td><td style=text-align:center>O(1)</td><td style=text-align:center>O(1)</td><td style=text-align:center>O(n)</td></tr></tbody></table><pre><code class=language-sh>restriction   loose   ------------------------------&gt;  strict
+</code></pre><ul><li>worst case: O(n)</li></ul><h2 id=types-of-binary-search-tree>Types of Binary Search Tree</h2><table><thead><tr><th style=text-align:center>#</th><th style=text-align:center>arbitrary BST</th><th style=text-align:center>Red-Black Tree</th><th style=text-align:center>AVL Tree</th><th style=text-align:center>Completed BST</th></tr></thead><tbody><tr><td style=text-align:center>worst search time</td><td style=text-align:center>O(n)</td><td style=text-align:center>O(log n)</td><td style=text-align:center>O(log n)</td><td style=text-align:center>O(log n)</td></tr><tr><td style=text-align:center>maintenance after insertion</td><td style=text-align:center>O(1)</td><td style=text-align:center>O(1)</td><td style=text-align:center>O(1)</td><td style=text-align:center>O(n)</td></tr></tbody></table><pre><code class=language-sh>restriction   loose   ------------------------------&gt;  strict
                                                     (ordered array)
-            arbitrary BST  Red-Blue Tree  AVL Tree   Completed BST
+            arbitrary BST  Red-Black Tree  AVL Tree   Completed BST
 
 worst
 search          O(n)     &gt;   O(log n)   ≈  O(log n)  &gt; O(log n)

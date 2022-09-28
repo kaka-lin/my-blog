@@ -155,6 +155,95 @@ upper inser and split: 選中間值 20
 ![](images/2-3-4_tree_example.png)
 ![](/my-blog/images/dsa/tree/binary_tree/binary_search_tree/2_3_4_tree/2-3-4_tree_example.png)
 
+## 2-3-4 Tree: Removal
+
+> BST 重要概念: 我們希望 Removal 發生在 leaf node。
+
+刪除節點有兩種: `刪除葉節點`與`刪除非葉節點`。但我們希望 Removal 發生在 leaf node，因為從中間砍掉在組合回來是很麻煩的一件事。如下所示:
+
+![](images/2-3-4_tree_remove_internal_node.png)
+![](/my-blog/images/dsa/tree/binary_tree/binary_search_tree/2_3_4_tree/2-3-4_tree_remove_internal_node.png)
+
+從上圖可知，我們想要`刪除非葉節點`，我們可以:
+
+- `將其左子樹中最大的點提上來補`
+- `將其右子樹中最小的點提上來補`
+
+```
+範例為 remove 3，然後 3 上去補 5 的位置。
+```
+
+> 於是我們`可以將任何 remove node 改成 remove leaf node`
+
+且 Remove leaf 有三種情境:
+
+- `Remove from 4-node`: easy
+- `Remove from 3-node`: easy
+- `Remove from 2-node`: hard
+
+### 1. Remove from 4-node: easy
+
+```
+直接移除即可。
+```
+
+如下所示:
+
+![](images/2-3-4_tree_remove.png)
+![](/my-blog/images/dsa/tree/binary_tree/binary_search_tree/2_3_4_tree/2-3-4_tree_remove.png)
+
+### 2. Remove from 3-node: easy
+
+```
+直接移除即可。
+```
+
+如下所示:
+
+![](images/2-3-4_tree_remove.png)
+![](/my-blog/images/dsa/tree/binary_tree/binary_search_tree/2_3_4_tree/2-3-4_tree_remove.png)
+
+### 3. Remove from 2-node: hard
+
+> 因為所有葉節點(leaf)皆在同一level
+> 如果移掉的話高度就會不一樣!
+
+此又可細分為兩種情境:
+
+1. `Transfer`: 隔壁家有人可以借
+
+    Transfer when borrowable
+
+    ```
+    隔壁有人，從隔壁借人。
+    ```
+
+    > Occur on 4-node and 3-node sibling
+
+    如下所示:
+
+    ![](images/2-3-4_tree_remove_transfer.png)
+    ![](/my-blog/images/dsa/tree/binary_tree/binary_search_tree/2_3_4_tree/2-3-4_tree_remove_transfer.png)
+
+
+2. `Fuse`: 隔壁家沒人可借
+
+    Fuse and remove from upper level
+
+    ```
+    把上一層移掉，往下移。
+    把爸爸拉下來，跟兄弟合成一個新的家。
+    ```
+
+    > Occur on 2-node sibling
+
+    > 因為是把上層移掉，所以也會遇到 remove 4/3/2 node 的 case。
+
+    如下所示:
+
+    ![](images/2-3-4_tree_remove_fuse.png)
+    ![](/my-blog/images/dsa/tree/binary_tree/binary_search_tree/2_3_4_tree/2-3-4_tree_remove_fuse.png)
+
 ## Reference
 
 - [NTU: DSA, Hsuan-Tien Lin](https://www.csie.ntu.edu.tw/~htlin/course/dsa20spring/)

@@ -1,12 +1,12 @@
 ---
-title: "[DSA] 紅黑樹 (Red-Black Tree) 介紹"
+title: "[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion"
 date: 2022-09-24
 tags: [Tree]
 series: [Data Structure and Algorithm]
 categories: [Data Structure and Algorithm]
 ---
 
-# 紅黑樹 (Red-Black Tree)
+# 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion
 
 > `紅黑樹 (Red-Black Tree)` 是一種`自平衡二元搜尋樹 (self-balancing binary search tree)`:
 >
@@ -225,9 +225,14 @@ Step 2: 插入 1.8 及 9
 
 > 常常用紅黑樹來實作 set 和 dictionary，C++ 中的 `std::set` 和 `std::map` 背後正是紅黑樹。
 
+## Summary
+
+這章節只介紹了紅黑樹的概念(用2-3-4 Tree 理解)與新增節點，
+紅黑樹的刪除請看[紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal](https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/)
+
 ## Reference
 
-- [NTU: DSA, Hsuan-Tien Lin](https://www.csie.ntu.edu.tw/~htlin/course/dsa20spring/)
+- [DSA 20200526: AVL Tree / 2-3-4 Tree / Red-Black Tree](https://www.youtube.com/watch?t=3697&v=cH8nH0Enjhw&feature=youtu.be)
 - [wiki: 紅黑樹](https://zh.wikipedia.org/zh-tw/紅黑樹)
 - [Mapping 2-3-4 Trees into Red-Black Trees](https://azrael.digipen.edu/~mmead/www/Courses/CS280/Trees-Mapping2-3-4IntoRB.html)
 - [【資料結構】平衡搜索樹 - 紅黑樹、B樹(2-3,2-3-4樹)、B+樹](https://z1nhouse.github.io/post/5lQAWUQWk/)

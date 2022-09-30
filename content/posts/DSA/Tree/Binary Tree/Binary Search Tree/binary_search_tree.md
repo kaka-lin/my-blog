@@ -1,5 +1,5 @@
 ---
-title: "[DSA] Binary Search Tree 介紹"
+title: "[DSA] 二元搜尋樹 (Binary Search Tree) 介紹"
 date: 2022-09-20
 tags: [Tree]
 series: [Data Structure and Algorithm]

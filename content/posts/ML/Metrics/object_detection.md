@@ -8,32 +8,39 @@ categories: [ML/DL]
 
 # 目標檢測評估指標 (Object Detection Metrics)
 
+> 2024/6/4 updated!
+
 Object Detection 需要執行兩個任務:
 
 1. decide whether an object exists in the scene: `classification`
 2. determine the position, the orientation and the shape of the object: `localization`
 
-在現實場景中，一個場景會包含很多物件類別（如: 車輛、行人、騎自行車的人、交通標誌），這導致有必要為每個檢測到的對象分配一個置信度(confidence)分數，通常在 0.0 ~ 1.0 之間。
+在現實場景中，一個場景會包含很多物件類別（如: 車輛、行人、騎自行車的人、交通標誌），這導致有必要為每個檢測到的對象分配一個置信度 (confidence) 分數，通常在 0.0 ~ 1.0 之間。
 
-Based on this score, the detection algorithm can be assessed at `various confidence levels`, which means that the threshold for accepting or rejecting an object is `systematically varied (系統地變化)`.
+基於這個分數，可以在不同的 confidence levels 上評估檢測算法，這意味著改變`閾值 (threshold)` 會造成不同結果。為了解決這些問題，`Average Precision (AP)` 指標被作為對象檢測的合適指標。
 
-In order to address these issues, the `Average Precision (AP)` metric was proposed as a suitable metric for object detection.
+在介紹 AP 前讓我們先認識下會用到的其他評估術語。
 
-## Confusion Matrix
+## Confusion Matrix (TP、FP、FN、TN)
 
-- True positive(TP): Patient actually has the illness and the test result was positive.
-- False positive(FP): Patient does not have the illness, but the test was positive nonetheless.
-- False negative(FN): Patient has the illness, but the test was wrongly negative.
-- True negative(TN): Patient does not have the illness and the test correctly returns a negative result.
+![](images/confusion_matrix.png)
+![](/my-blog/images/ml/metrics/images/confusion_matrix.png)
 
-    ```
-    In object detection, this would mean that
-    there is no object present in a scene
-    and the detector has correctly not returned a detection.
-    ```
+舉例，判斷是否為狗的模型中:
 
-    ![](images/confusion_matrix.png)
-    ![](/my-blog/images/ml/metrics/object_detection/confusion_matrix.png)
+- `True positive (TP)`: 是狗且被模型判斷為狗的數量
+- `False positive (FP)`: 不是狗但被模型判斷為狗的數量
+- `False negative (FN)`: 是狗但被模型判斷為不是狗的數量
+- `True negative (TN)`: 不是狗且被模型判斷為不是狗的數量
+
+物件偵測模型:
+
+> 後面會再詳細解說。
+
+- `True positive (TP)`: 成功檢測到某個 ground truth boundind box 的預測框的數量
+- `False positive (FP)`: 沒能匹配到任一個 ground truth bounding box 的預測框的數量
+- `False negative (FN)`: 未被檢測到的 ground truth bounding box 的數量
+- `True negative (TN)`: 忽略不計
 
 ## Precision and Recall
 
@@ -52,19 +59,15 @@ In order to address these issues, the `Average Precision (AP)` metric was propos
 
 當模型預測為特定類別的目標物，有多少是正確的。 (`針對預測結果`)
 
-```
-Precision = TP / (TP + FP)
-```
+$$ Precision = \frac{TP}{(TP + FP)} $$
 
 ### Recall (召回率)
 
-實際為目標物也確實被預測為目標物的比例。(`針對原來的樣本`)
+又稱 Sensitivity (靈敏度)。實際為目標物也確實被預測為目標物的比例。(`針對原來的樣本`)
 
-```
-Recall = TP / (TP + FN)
-```
+$$ Recall = \frac{TP}{(TP + FN)} $$
 
-### Example 1:
+##### Example 1:
 
 假設有一個 detector, TP=80, FP=2, FN=6
 
@@ -80,10 +83,10 @@ P = 80 / (80 + 6) = 0.9302
 R = 80 / (80 + 2) = 0.9756
 ```
 
-### Example 2:
+##### Example 2:
 
 ![](images/precision_recall_1.png)
-![](/my-blog/images/ml/metrics/object_detection/precision_recall_1.png)
+![](/my-blog/images/ml/metrics/images/precision_recall_1.png)
 
 如上圖所示，圖片裡有4台汽車，但模型偵測出5台汽車
 
@@ -98,64 +101,86 @@ Recall = TP / (TP + FN) = 4 / 4 = 1
 
 ## F1-score (F1-Mesure)
 
-他是`F-score`的一個特例，當`beta=1`時就是`F1-score`。
+> 他是`F-score`的一個特例，當`beta=1`時就是`F1-score`。
 
-`F1-score`最理想的數值是`趨近於1`，就是讓precision和recall都有很高的值。
+`F1-score 是 recall 和 precision 的 加權調和平均數`，顧名思義就是為了調和 recall 和 precision 之間增減反向的矛盾，對 recall 和 precision 進行加權調和，公式如下:
 
 ```
 F1-score = 2 * ((Precision * Recall) / (Precision + Recall))
 ```
 
-$$ F1 = 2 * \frac{Precision * Recall}{Precision + Recall}$$
+$$
+\begin{aligned}
+F1-score
+& = 2 * \frac{Precision * Recall}{Precision + Recall} \\
+& = \frac{2TP}{2TP + FN + FP}
+\end{aligned}
+$$
 
-
-假設兩者皆為1，則`F1-score = 1 (100%)`，代表該演算法有著最佳的精確度
+`F1-score`最理想的數值是`趨近於1`，就是讓 precision 和 recall 都有很高的值。假設 Precision 與 Recall 皆為1，則`F1-score = 1 (100%)`，代表該演算法有著最佳的精確度
 
 ## Intersection over Union (IoU)
 
-`IoU` 簡單來說就就是評估預測的 `bounding box` 與 `ground truth box` 有多重疊(多像)，如下所示:
+`IoU` 簡單來說就就是評估預測的 `pred bounding box` 與 `ground truth box` 有多重疊(多像)，如下所示:
 
 ![](images/iou.png)
-![](/my-blog/images/ml/metrics/object_detection/iou.png)
+![](/my-blog/images/ml/metrics/images/iou.png)
 
 ### IoU and Precision and Recall
 
-在 Onject Detection 的任務中，`我們可以透過 IoU 來計算 Precision 與 Recall，根據 IoU Threshold 判斷`，一般情況下，*如果 bounding box 被預測為確實有目標物存在，且 IoU 大於所設之threshold，我們就認定此 boundind box 為 True Positive (TP)，反之為 Flase Positive (FP)。*
+在 Onject Detection 的任務中，*我們可以透過 IoU 來計算 Precision 與 Recall，根據 IoU Threshold 判斷*，一般情況下，`如果 bounding box 被預測為確實有目標物存在，且 IoU 大於所設之 threshold，我們就認定此 boundind box 為 True Positive (TP)，反之為 Flase Positive (FP)。`
 
-For Example，假設 `IoU Threshold: 0.5`
+- True Positive (TP): IOU >= threshold (閾值)
+- False Positive (FP): IOU < threshold (閾值)
+- False Negative (FN): 未被檢測的 Ground Truth
+- True Negative (TN): 忽略不計
+
+> ###### NOTE: IoU Threshold 的選擇很重要！！！通常是用 0.5
+
+#### Examples
+
+假設 `IoU Threshold: 0.5`
 
 1. Object IoU 0.7 -> TP
 2. Object IoU 0.3 -> FP
 
 ![](images/iou_tp_fp_1.png)
-![](/my-blog/images/ml/metrics/object_detection/iou_tp_fp_1.png)
+![](/my-blog/images/ml/metrics/images/iou_tp_fp_1.png)
 
-現在針對 `IoU = 0.3` 的情況來看
+現在針對 `IoU = 0.3` 這個預測框來看
 
-1. IoU Threshold 0.5 -> FP
-2. IoU Threshold 0.2 -> TP
+1. 假設 IoU Threshold 0.5: 那麼這預測框就會被判定為 FP
+2. 假設 IoU Threshold 0.2: 那麼這預測框就會被判定為 TP
 
 ![](images/iou_tp_fp_2.png)
-![](/my-blog/images/ml/metrics/object_detection/iou_tp_fp_2.png)
+![](/my-blog/images/ml/metrics/images/iou_tp_fp_2.png)
 
-所以 `IoU Threshold` 的選擇很重要！
 
-```
-有的設置 IoU Threshold 0.5，
-也有的設置 IoU Threshold 0.7
-```
+所以 IoU Threshold 的選擇很重要！
 
 ## Precision-Recall Curve
 
+PR 曲線就是以 precision 和 recall 作為 x-y 軸座標的曲線。根據選取不同的 threshold 可以畫出不同的 PR 曲線。
+
 As mentioned previously, there is an inverse relationship between precision and recall, which is dependent on the threshold we choose for object detection. Let us take a look at the following figure, which shows the precision-recall curves of various object detection algorithms (each color represents a different algorithm):
 
-![](images/precision_recall_curves.png)
-![](/my-blog/images/ml/metrics/object_detection/precision_recall_curves.png)
-Precision-Recall curves for 5 detectors
+<p align="center">
+    <img src="images/precision_recall_curves.png" />
+    <em>Precision-Recall curves for 5 detectors</em>
+</p>
+<p align="center">
+    <img src="my-blog/images/ml/metrics/images/precision_recall_curves.png" />
+    <em>Precision-Recall curves for 5 detectors</em>
+</p>
 
-The curves are generated by varying the detection threshold from 0.0 to 1.0 and by computing precision and recall for each setting. Based on this metric, the solid blue curve shows the best performance, as the precision (i.e. the likelihood that a detection actually corresponds to a real object) drops the least for increasing recall values. Ideally, precision would stay at 1.0 until a recall of 1.0 has been reached. `Thus, another way of looking at these curves would be to compare detectors based on the area under the curve: Thus, the larger the integral of the precision-recall curve, the higher the detector performance.` Based on the precision-recall curve, engineers can make an informed decision on the detector threshold setting they want to choose by considering the demands of their application in terms of precision and recall.
+這些曲線是通過將 threshold 從 0.0 到 1.0 並計算每個 precision 和 recall 而生成的。基於此指標，可以發現藍色實線擁有最佳性能，因為 precision 隨著 recall 的增加而下降最少。
+理想情況下，precision 將保持在 1.0，直到 recall 到達 1.0 。因此，查看這些曲線的另一種方法是根據`曲線下的面積(area under curve, AUC)`比較檢測器，因此，`PR 曲線下的面積越大，此檢測器的性能越高`。
+
+Based on the precision-recall curve, engineers can make an informed decision on the detector threshold setting they want to choose by considering the demands of their application in terms of precision and recall.
 
 ## Average Precision (AP)
+
+> AP 就是 計算 PR 曲線下面積的近似值，是一個 0~1 之間的數值。
 
 我們先來看看 Average Precision 的定義：
 
@@ -164,7 +189,7 @@ The idea of the `average precision (AP)` metric is to `compact the information w
 $$ AP=\frac{1}{11} \sum_{Recall_i} Precision(Recall_i)$$
 
 ![](images/average_precision.png)
-![](/my-blog/images/ml/metrics/object_detection/average_precision.png)
+![](/my-blog/images/ml/metrics/images/average_precision.png)
 
 Note that in practice, varying the threshold level in equally spaced increments does not correspond to equally spaced increases in recall. The AP score for an algorithm varies between 0.0 and 1.0 with the latter being a perfect result.
 
@@ -177,12 +202,12 @@ Note that in practice, varying the threshold level in equally spaced increments 
 假設偵測目標為車子且總共有8台，Ground Truth 與模型給出的預測如下所示:
 
 ![](images/ap_1.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_1.png)
+![](/my-blog/images/ml/metrics/images/ap_1.png)
 
 1. 將結果`按照 Confidence 大小降序排序`，且 `IoU Threshold 為 0.5`，如下:
 
     ![](images/ap_2.png)
-    ![](/my-blog/images/ml/metrics/object_detection/ap_2.png)
+    ![](/my-blog/images/ml/metrics/images/ap_2.png)
 
 2. `針對每個預測，決定其是 TP or FP，並且計算 Precision 和 Recall`，如下:
 
@@ -222,7 +247,7 @@ Note that in practice, varying the threshold level in equally spaced increments 
     畫出 `Precision-Recall` curve, 如下:
 
     ![](images/ap_3.png)
-    ![](/my-blog/images/ml/metrics/object_detection/ap_3.png)
+    ![](/my-blog/images/ml/metrics/images/ap_3.png)
 
     可以發現到:
     - Recall 會隨著計算的 case 越多呈現越來越大的趨勢
@@ -231,12 +256,12 @@ Note that in practice, varying the threshold level in equally spaced increments 
 3. `拉平曲線 (smooth the curve)`
 
     ![](images/ap_4.png)
-    ![](/my-blog/images/ml/metrics/object_detection/ap_4.png)
+    ![](/my-blog/images/ml/metrics/images/ap_4.png)
 
     Graphically, at each recall level, we replace each precision value with the maximum precision value to the right of that recall level.
 
     ![](images/ap_5.png)
-    ![](/my-blog/images/ml/metrics/object_detection/ap_5.png)
+    ![](/my-blog/images/ml/metrics/images/ap_5.png)
 
 ### Interpolated AP (PASCAL VOC Challenge before 2010)
 
@@ -245,11 +270,11 @@ PASCAL VOC is a popular dataset for object detection. For the PASCAL VOC challen
 Pascal VOC2010之前將 Recall 分成 11 個點，分別為 `{0, 0.1, , …, 0.9, 1.0}`，並找出這幾個點的最大 Precision 作平均計算。
 
 ![](images/ap_6.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_6.png)
+![](/my-blog/images/ml/metrics/images/ap_6.png)
 
 
 ![](images/ap_4.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_4.png)
+![](/my-blog/images/ml/metrics/images/ap_4.png)
 ```
 AP = (1+1+1+1+0.833+0.833+0.833+0+0+0+0) / 11 = 0.591
 ```
@@ -259,15 +284,15 @@ AP = (1+1+1+1+0.833+0.833+0.833+0+0+0+0) / 11 = 0.591
 Instead of sampling 11 points, we sample p(rᵢ) whenever it drops and computes AP as the sum of the rectangular blocks.
 
 ![](images/ap_7.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_7.png)
+![](/my-blog/images/ml/metrics/images/ap_7.png)
 
 This definition is called the `Area Under Curve (AUC)`.
 
 ![](images/ap_4.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_4.png)
+![](/my-blog/images/ml/metrics/images/ap_4.png)
 
 ![](images/ap_8.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_8.png)
+![](/my-blog/images/ml/metrics/images/ap_8.png)
 ```
 AP = 1*0.375 + 0.833*(0.625-0.375) = 0.583
 ```
@@ -275,7 +300,7 @@ AP = 1*0.375 + 0.833*(0.625-0.375) = 0.583
 As shown below, as the interpolated points do not cover where the precision drops, both methods will diverge.
 
 ![](images/ap_9.png)
-![](/my-blog/images/ml/metrics/object_detection/ap_9.png)
+![](/my-blog/images/ml/metrics/images/ap_9.png)
 
 ## Mean Average Precision (mAP)
 
@@ -289,7 +314,7 @@ As shown below, as the interpolated points do not cover where the precision drop
 因為改變 IoU 閾值會影響無論是 Precision 或是 Recall，此時 mAP 就是計算個 IoU 閾值下的 AP 分數，然後根據這些值計算平均值。如下圖所示:
 
 ![](images/precision_recall_curves_for_varying_IoU_thresholds.png)
-![](/my-blog/images/ml/metrics/object_detection/precision_recall_curves_for_varying_IoU_thresholds.png)
+![](/my-blog/images/ml/metrics/images/precision_recall_curves_for_varying_IoU_thresholds.png)
 Precision-Recall curves for varying IoU thresholds
 
 

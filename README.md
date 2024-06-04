@@ -18,6 +18,11 @@ $ git clone --recursive git@github.com:kaka-lin/my-blog-hugo.git
 $ git submodule update --init --recursive
 ```
 
+> Update the submodule to the latest remote commit, as below:
+> ```
+> $ git submodule update --remote --merge
+> ```
+
 ### Draft
 
 ```bash

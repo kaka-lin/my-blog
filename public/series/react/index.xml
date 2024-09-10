@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React on Kaka&#39;s Blog</title>
+    <link>https://kaka-lin.github.io/my-blog/series/react/</link>
+    <description>Recent content in React on Kaka&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 26 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://kaka-lin.github.io/my-blog/series/react/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Distributed] 分散式訓練介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2024/09/introduction/</link>
+      <pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2024/09/introduction/</guid>
+      <description>Distributed Training (分散式訓練) - 介紹 分散式訓練是指將訓練模型的工作負載分散到多台機器的多個 GPU 上進行。 分散式訓練 - 平行處理的方式主要分為兩種類型: 資料平行</description>
+    </item>
+    
+    <item>
+      <title>[Segmentation] 影像分割指標 (Segmentation Metrics)</title>
+      <link>https://kaka-lin.github.io/my-blog/2024/06/segmentation/</link>
+      <pubDate>Tue, 04 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2024/06/segmentation/</guid>
+      <description>Segmentation Metrics 影像分割是對影像中的每個 Pixel 做分類，可分為: 語意分割 (Semantic Segmentation): 注重類別之間的區分，而不是同類別不同個體 實例分割 (Instance Segmentation): 同時注重類別及同類別中不同個體</description>
+    </item>
+    
+    <item>
+      <title>[CanBus] Example C code for SocketCAN</title>
+      <link>https://kaka-lin.github.io/my-blog/2023/03/socketcan_example/</link>
+      <pubDate>Mon, 27 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2023/03/socketcan_example/</guid>
+      <description>下面是 SocketCAN Librar 使用的介紹，完整程式碼請參考: kaka-lin/Notes/Network/canbus/can_examples 搭配 Qt 製作自己的 CanBus Tool 如下圖: 1. Create a CAN socket The first step before doing anything is to create a socket. int can_fd; // PF_CAN or AF_CAN if ((can_fd = socket(PF_CAN, SOCK_RAW, CAN_RAW)) &amp;lt; 0) { perror(&amp;quot;Error while Opening Socket&amp;quot;);</description>
+    </item>
+    
+    <item>
+      <title>[CanBus] SocketCAN Support for Kvaser Devices</title>
+      <link>https://kaka-lin.github.io/my-blog/2023/03/kvaser_socketcan/</link>
+      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2023/03/kvaser_socketcan/</guid>
+      <description>最近在用 Kvaser Leaf Pro HS v2 時想要用 SocketCAN interface，但一直沒找到完整教學， 索性就自己記錄下來，步驟如下！ If you want to use SocketCAN with Kvaser devices, follow the steps as below. 更多資訊請看</description>
+    </item>
+    
+    <item>
+      <title>[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal </title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/</link>
+      <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/</guid>
+      <description>紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal BST 重要概念: 我們希望 Removal 發生在 leaf node。 刪除節點有兩種: 刪除葉節點與刪除非葉節點。但我們希望 Removal 發生在 leaf node，因為從</description>
+    </item>
+    
+    <item>
+      <title>[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/red_black_tree/</link>
+      <pubDate>Sat, 24 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/red_black_tree/</guid>
+      <description>紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion 紅黑樹 (Red-Black Tree) 是一種自平衡二元搜尋樹 (self-balancing binary search tree): 比 2-3-4 樹好 implement。 平衡性要求比 AVL Tree 還寬鬆。 紅黑樹是利用節點顏色來檢視</description>
+    </item>
+    
+    <item>
+      <title>[DSA] 2-3-4 Tree 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/2_3_4_tree/</link>
+      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/2_3_4_tree/</guid>
+      <description>2-3-4 Tree 是一種 self-balancing tree (Balanced Tree)。 比紅黑樹容易了解，但不容易 implement，所以不實用。 與 AVL Tree 相比: 用暫存維持平衡性，不會 rebalance immediately 所謂的 2-3-4 tree 就是每</description>
+    </item>
+    
+    <item>
+      <title>[DSA] AVL Tree 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/avl_tree/</link>
+      <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/avl_tree/</guid>
+      <description>AVL Tree 是 Balanced BST 的一種實作方式 與2-3-4樹及紅黑樹的差異: rebalance almost immediately Adelson-Velsky and Landis Tree (AVL Tree) is a Binary Search Tree (BST) such that: The difference between the height of the left and right subtree is either -1, 0, or +1. 公式: $|heighted(T_L) - heighted(T_R)| \leq 1$ Balanced</description>
+    </item>
+    
+    <item>
+      <title>[DSA] 二元搜尋樹 (Binary Search Tree) 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/binary_search_tree/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/binary_search_tree/</guid>
+      <description>二元搜尋樹 (Binary Search Tree) 介紹 二元搜尋樹 (Binary Search Tree, BST) 就是將資料按造大小來建立樹，規則為: 若它的左子樹不為空，則左子樹上所有節點的值均小於它的根節點的值 若它</description>
+    </item>
+    
+    <item>
+      <title>[DSA] Hash Table 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/introduction/</link>
+      <pubDate>Fri, 16 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/introduction/</guid>
+      <description>Hash Table Hash Table 就是儲存 (key, value) 這種 mapping 關係的一種資料結構。 它是透過 Hash Function 來計算出 key 與 value 所對應的位置，如下所示: 前言 在 prority queue 裡，我們在乎的是資料的大小(優先度</description>
+    </item>
+    
+    <item>
+      <title>[DSA]  Binomial Heap 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/binomial_heap/</link>
+      <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/binomial_heap/</guid>
+      <description>Binomial Heap 前言: 均攤 (Amortization) 介紹 在開始介紹 Binomial Heap 前，我們先來看看 Heap (Min Heap or Max Heap) 的 operation 時間複雜度: insert: O(log n) remove/delete: O(log n) 思考: 我們能不能減少 insert 的時間複雜度 -&amp;gt; O(1)，但一</description>
+    </item>
+    
+    <item>
+      <title>[DSA] Heap Tree (堆積) 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/heap_tree/</link>
+      <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/heap_tree/</guid>
+      <description>Heap Tree 用 Tree 了解他，用 Array 實作相關的 operation 從 Binray Tree 的觀念出發，首先將原本 Tree 的 node 加上 Key (檢索鍵)，如下: key: priority or weights or others data: original data (like: todo) 有分: Min Heap(最小堆積)</description>
+    </item>
+    
+    <item>
+      <title>[DSA] Binary Expression Tree 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/expression_tree/</link>
+      <pubDate>Fri, 09 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/expression_tree/</guid>
+      <description>Binary Expression Tree Each internal node corresponds to the operator and each leaf node corresponds to the operand. Example: A expression tree for 3 * (5+7) would be: * / \ 3 + / \ 5 7 prefix: (* 3 (+ 5 7)) -&amp;gt; mul(3, plus(5, 7)) infix: 3 * (5+7) -&amp;gt; 四則運算 postfix: 3 5 7 + * -&amp;gt; 電腦上實際想要</description>
+    </item>
+    
+    <item>
+      <title>[DSA] Binary Tree 介紹</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/binary_tree/</link>
+      <pubDate>Fri, 09 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/binary_tree/</guid>
+      <description>Binary Tree (二元樹) 每個 node 最多就是只有 2 個 child node，且稱兩個 child node 為 left child 和 right child。 A binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.</description>
+    </item>
+    
+    <item>
+      <title>[DSA] Introduction of Tree</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/tree/</link>
+      <pubDate>Thu, 08 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/tree/</guid>
+      <description>Tree (樹) 樹就是Hierarchical Access，樹上的 node 沒有 child 數量限制，如下所示: Each node of the tree will have a root value and a list of references to other nodes which are called child nodes. 其他相關</description>
+    </item>
+    
+    <item>
+      <title>[Object Detection] YOLO Image Preprocessing: resize or letterbox</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/resize_image/</link>
+      <pubDate>Tue, 06 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/resize_image/</guid>
+      <description>Resize image, Keeping Aspect Ratio or not 在 Train model 時，前處理常常會需要將 image resize 成 model input 的 size，如 YOLO 的 416x416, 608x608 等，這邊列舉幾種目前常見的 resize 方法，如下: Original image: Resized without keeping aspect ratio - cv::resize() [Square Inference] Resized with</description>
+    </item>
+    
+    <item>
+      <title>[Tensorflow] Progress bar of custom training loop</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/progress_bar/</link>
+      <pubDate>Fri, 02 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/progress_bar/</guid>
+      <description>Progress bar of Tensorflow 2&amp;rsquo;s custom training loop The collection of the progress bar methods for tf.GradientTape when training model 詳細 code 請看: progress_bar_tqdm.py progress_bar_keras.py progress_bar_click.py 1. tqdm 使用 tqdm 來顯示 model training 進度, loss and accuracy，如下: train_loss = tf.keras.metrics.Mean(name=&#39;train_loss&#39;) train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name=&#39;train_accuracy&#39;) for epoch in range(NUM_EPOCHS): n_batches = x_train.shape[0] /</description>
+    </item>
+    
+    <item>
+      <title>[Tensorflow] Custom Training Loop</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/09/custom_training_loop/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/09/custom_training_loop/</guid>
+      <description>Custom Training Loop 在 tf.keras 中已經提供很方便的 training and evaluation loops, fit() 和 evaluate()。 但如果我們想要對 training 或 evaluation 進行更 low-level 的控制的話， 我們需要從頭開始寫自己的 training and evaluation loo</description>
+    </item>
+    
+    <item>
+      <title>[Tensorflow] Introduction to tf.GradientTape and automatic differentiation</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/08/introduction/</link>
+      <pubDate>Wed, 31 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/08/introduction/</guid>
+      <description>GradientTape 在介紹 tf.GradientTape 前我先來看看什麼是自動微分 (Automatic differentiation, AD) Automatic Differentiation 為了自動微分(Automatic differentiation)，TensorFlow 需要: 前</description>
+    </item>
+    
+    <item>
+      <title>[PyTorch] Various Progress Bar in PyTorch</title>
+      <link>https://kaka-lin.github.io/my-blog/2022/08/progress_bar/</link>
+      <pubDate>Fri, 19 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaka-lin.github.io/my-blog/2022/08/progress_bar/</guid>
+      <description>Pytorch Progress bar The collection of the progress bar methods for PyTorch when training model 詳細 code 請看: progress_bar_tqdm.py progress_bar_keras.py progress_bar_click.py 1. tqdm 使用 tqdm 來顯示 model training 進度, loss and accuracy，如下: for epoch in range(NUM_EPOCHS): n_batches = len(train_loader) print(f&#39;Epoch {epoch+1}/{NUM_EPOCHS}&#39;) with tqdm(train_loader, total=n_batches, bar_format=&#39;{desc:&amp;lt;5.5}{percentage:3.0f}%|{bar:36}{r_bar}&#39;) as pbar: for idx, (x, y)</description>
+    </item>
+    
+  </channel>
+</rss>

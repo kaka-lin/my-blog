@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        [DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion - Kaka&#39;s Blog
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion 紅黑樹 (Red-Black Tree) 是一種自平衡二元搜尋樹 (self-balancing binary search tree): 比 2-3-4 樹好 implement。 平衡性要求比 AVL Tree 還寬鬆。 紅黑樹是利用節點顏色來檢視" />
+    <meta name="generator" content="Hugo 0.126.3 with theme pure" />
+    <title>[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion - Kaka&#39;s Blog</title>
+    
+    
+    <link rel="stylesheet" href="https://kaka-lin.github.io/my-blog/css/style.min.c42838cb837ce405361b2d6e3a1e99ddcc6be6d8be2766f2fe32a151d5664f19.css">
+    
+    <link rel="stylesheet" href="https://kaka-lin.github.io/my-blog/css/custom.css" async>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree/">
+  <meta property="og:site_name" content="Kaka&#39;s Blog">
+  <meta property="og:title" content="[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion">
+  <meta property="og:description" content="紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion 紅黑樹 (Red-Black Tree) 是一種自平衡二元搜尋樹 (self-balancing binary search tree): 比 2-3-4 樹好 implement。 平衡性要求比 AVL Tree 還寬鬆。 紅黑樹是利用節點顏色來檢視">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-09-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-09-24T00:00:00+00:00">
+    <meta property="article:tag" content="Tree">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2022/09/2_3_4_tree/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2022/09/avl_tree/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2022/09/binary_search_tree/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2022/09/introduction/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2022/09/binomial_heap/">
+
+  <meta itemprop="name" content="[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion">
+  <meta itemprop="description" content="紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion 紅黑樹 (Red-Black Tree) 是一種自平衡二元搜尋樹 (self-balancing binary search tree): 比 2-3-4 樹好 implement。 平衡性要求比 AVL Tree 還寬鬆。 紅黑樹是利用節點顏色來檢視">
+  <meta itemprop="datePublished" content="2022-09-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-09-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1542">
+  <meta itemprop="keywords" content="Tree">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion">
+  <meta name="twitter:description" content="紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion 紅黑樹 (Red-Black Tree) 是一種自平衡二元搜尋樹 (self-balancing binary search tree): 比 2-3-4 樹好 implement。 平衡性要求比 AVL Tree 還寬鬆。 紅黑樹是利用節點顏色來檢視">
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/kaka-lin" target="_blank">
+            <img class="img-circle img-rotate" src="https://kaka-lin.github.io/my-blog/images/kaka_virtual.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Kaka Lin</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taipei, Taiwan</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/my-blog/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/my-blog/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-books">
+                <a href="/my-blog/series/">
+                    <i class="icon icon-book-fill"></i>
+                  <span class="menu-title">Study Notes</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/my-blog/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/my-blog/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Categories </h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/c&#43;&#43;/" class="category-list-link">c&#43;&#43;</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/canbus/" class="category-list-link">canbus</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/data-science/" class="category-list-link">data science</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/data-structure-and-algorithm/" class="category-list-link">data structure and algorithm</a><span class="category-list-count">16</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/database/" class="category-list-link">database</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/devops/" class="category-list-link">devops</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/docker/" class="category-list-link">docker</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/go/" class="category-list-link">go</a><span class="category-list-count">8</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/ml/dl/" class="category-list-link">ml/dl</a><span class="category-list-count">11</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/os/" class="category-list-link">os</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/python/" class="category-list-link">python</a><span class="category-list-count">13</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/qt/" class="category-list-link">qt</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/react/" class="category-list-link">react</a><span class="category-list-count">2</span></li>
+        </ul>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Series </h3>
+    <div class="widget-body">
+        <ul class="series-list">
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/asynchronous-programming/" class="series-list-link">asynchronous programming</a><span class="series-list-count">7</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/data-structure-and-algorithm/" class="series-list-link">data structure and algorithm</a><span class="series-list-count">16</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/distributed/" class="series-list-link">distributed</a><span class="series-list-count">1</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/go/" class="series-list-link">go</a><span class="series-list-count">7</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/machine-learning/" class="series-list-link">machine learning</a><span class="series-list-count">11</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/python/" class="series-list-link">python</a><span class="series-list-count">13</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/pytorch/" class="series-list-link">pytorch</a><span class="series-list-count">4</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/react/" class="series-list-link">react</a><span class="series-list-count">2</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/tensorflow/" class="series-list-link">tensorflow</a><span class="series-list-count">3</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/yolo-series/" class="series-list-link">yolo series</a><span class="series-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Tags </h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/array/" class="tag-list-link">array</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/automatic-differentiation/" class="tag-list-link">automatic differentiation</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/canbus/" class="tag-list-link">canbus</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/ci/cd/" class="tag-list-link">ci/cd</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/classification/" class="tag-list-link">classification</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/concurrency/" class="tag-list-link">concurrency</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/coroutine/" class="tag-list-link">coroutine</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/distributed/" class="tag-list-link">distributed</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/dp/" class="tag-list-link">dp</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/generator/" class="tag-list-link">generator</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/google-trends/" class="tag-list-link">google trends</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/hash-table/" class="tag-list-link">hash table</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/heap/" class="tag-list-link">heap</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/i/o-models/" class="tag-list-link">i/o models</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/jupyter/" class="tag-list-link">jupyter</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/kvaser/" class="tag-list-link">kvaser</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/letterbox/" class="tag-list-link">letterbox</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/linked-list/" class="tag-list-link">linked list</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/matplotlib/" class="tag-list-link">matplotlib</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/metrics/" class="tag-list-link">metrics</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/mysql/" class="tag-list-link">mysql</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/object-detection/" class="tag-list-link">object detection</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/oop/" class="tag-list-link">oop</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/orm/" class="tag-list-link">orm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/parallelism/" class="tag-list-link">parallelism</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/progressbar/" class="tag-list-link">progressbar</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/pytorch/" class="tag-list-link">pytorch</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/segmentation/" class="tag-list-link">segmentation</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/socketcan/" class="tag-list-link">socketcan</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/sqlalchemy/" class="tag-list-link">sqlalchemy</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/sqlite/" class="tag-list-link">sqlite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/tree/" class="tag-list-link">tree</a><span
+                    class="tag-list-count">11</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2024/09/introduction/" class="title">[Distributed] 分散式訓練介紹</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2024-09-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">2024-09-10</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2024/06/segmentation/" class="title">[Segmentation] 影像分割指標 (Segmentation Metrics)</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2024-06-04 00:00:00 &#43;0000 UTC" itemprop="datePublished">2024-06-04</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2023/03/socketcan_example/" class="title">[CanBus] Example C code for SocketCAN</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-03-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">2023-03-27</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2023/03/kvaser_socketcan/" class="title">[CanBus] SocketCAN Support for Kvaser Devices</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-03-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2023-03-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/" class="title">[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal </a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-09-28 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-09-28</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a class="article-title"
+     href="/my-blog/2022/09/red_black_tree/">
+     [DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion
+  </a>
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree/" class="article-date">
+  <time datetime="2022-09-24 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-09-24</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a class="article-category-link" href="/my-blog/categories/data-structure-and-algorithm/"> Data Structure and Algorithm </a>
+</span><span class="article-series">
+  <i class="icon icon-book"></i>&nbsp;
+  <a class="article-series-link" href="/my-blog/series/data-structure-and-algorithm/"> Data Structure and Algorithm </a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/my-blog/tags/tree/"> Tree </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/my-blog/2022/09/red_black_tree/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h1 id="紅黑樹-red-black-tree-介紹---part-1-insertion">紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion</h1>
+<blockquote>
+<p><code>紅黑樹 (Red-Black Tree)</code> 是一種<code>自平衡二元搜尋樹 (self-balancing binary search tree)</code>:</p>
+<ul>
+<li>比 <a href="https://kaka-lin.github.io/my-blog/2022/09/2_3_4_tree/">2-3-4 樹</a>好 implement。</li>
+<li>平衡性要求比 <a href="https://kaka-lin.github.io/my-blog/2022/09/avl_tree/">AVL Tree</a> 還寬鬆。</li>
+</ul>
+</blockquote>
+<p>紅黑樹是利用節點顏色來檢視二元樹每條延展的路徑高度是否差不多，因此發明者訂立了以下幾點規則:</p>
+<ul>
+<li>
+<p>樹上的每個節點 (node) 只能是紅色或黑色</p>
+</li>
+<li>
+<p>根節點 (root) 一定要是黑色</p>
+</li>
+<li>
+<p>葉節點 (leaf) 一定要是黑色的空值 (NULL)</p>
+</li>
+<li>
+<p>紅色節點的兩個子節點 (child) 一定要是黑色</p>
+<pre><code>亦即不能有兩個紅色節點相連
+</code></pre>
+<blockquote>
+<p>注意：黑色節點的子節點顏色沒有限制</p>
+</blockquote>
+</li>
+<li>
+<p>從任何節點出發，其下至葉節點所有路徑的黑色節點數目要相同</p>
+<pre><code>保持黑平衡的二元樹，嚴格來說不是平衡二元樹。
+</code></pre>
+</li>
+</ul>
+<p>我們從 <a href="https://github.com/kaka-lin/Notes/tree/master/DSA/Tree/Binary%20Tree/Binary%20Search%20Tree/2-3-4%20Tree">2-3-4 Tree</a> 出發來學習理解 Red-Black Tree (紅黑樹)。</p>
+<h2 id="mapping-2-3-4-trees-into-red-black-trees">Mapping 2-3-4 Trees into Red-Black Trees</h2>
+<p>從 2-3-4 Tree 的結構我可以發現，太複雜很難 implement，
+我們想要一個 binary 的形式，因為他很好寫很好實作，</p>
+<p>所以我們<code>用 binary tree 來表示 2-3-4 Tree</code>:</p>
+<pre><code>2-3-4 Tree 的每一種 node 都對應到 binary search tree 的一種每一種 node
+</code></pre>
+<p>如下所示:</p>
+<ul>
+<li>
+<p>2 node:</p>
+<p><img src="images/2-node.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/2-node.png" alt="">
+<img src="images/2-node_2.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/2-node_2.png" alt=""></p>
+<pre><code>自己就是這個 node 的代表，把他塗成黑色的
+</code></pre>
+</li>
+<li>
+<p>3 node:</p>
+<p><img src="images/3-node.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/3-node.png" alt="">
+<img src="images/3-node_2.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/3-node_2.png" alt=""></p>
+<pre><code>可以小的當代表，也可以大的當代表。
+</code></pre>
+</li>
+<li>
+<p>4 node:</p>
+<p><img src="images/4-node.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/4-node.png" alt="">
+<img src="images/4-node_2.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/4-node_2.png" alt=""></p>
+<pre><code>中間的當代表，把他塗成黑色的。
+其他不是代表的，把它塗成紅色。
+</code></pre>
+</li>
+</ul>
+<p>從上可知: <code>一個2-3-4樹可以轉換成不止一種型態的紅黑樹，但一個紅黑樹僅能轉換成一種2-3-4樹。</code></p>
+<h3 id="example">Example</h3>
+<p><img src="images/2-3-4_tree-to-rb_tree.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/2-3-4_tree-to-rb_tree.png" alt=""></p>
+<h2 id="insertion">Insertion</h2>
+<ol>
+<li>在新增節點時，新插入的節點一律都為紅色</li>
+<li>往上檢查是否符合紅黑樹各項規則，如果不符合則執行下列操作:
+<ul>
+<li>Recolor</li>
+<li>Rotation</li>
+</ul>
+<blockquote>
+<p>通常都是 <code>Rotation + Recolor</code> =&gt; <code>Restructure</code></p>
+</blockquote>
+</li>
+</ol>
+<p>插入口訣:</p>
+<pre><code>新生先為紅
+紅父不能融
+黑叔逼爺退
+紅叔變色龍
+</code></pre>
+<p>插入情境如下所示。</p>
+<h3 id="1-紅黑樹為空插入節點後成為根節點">1. 紅黑樹為空，插入節點後成為根節點</h3>
+<p>一開始插入都預設為紅色，但因為根節點須為黑色，
+所以 Recolor 為黑色。</p>
+<blockquote>
+<p>規則: 根節點 (root) 一定要是黑色</p>
+</blockquote>
+<h3 id="2-在黑色節點下插入節點">2. 在黑色節點下插入節點</h3>
+<p>一開始插入都預設為紅色，但沒違反規則，所以不用變色。</p>
+<blockquote>
+<p>規則: 黑色節點的子節點顏色沒有限制</p>
+</blockquote>
+<h3 id="3-在紅色節點下插入節點-最重要">3. 在紅色節點下插入節點 (最重要！)</h3>
+<p>一開始插入都預設為紅色，此時違反規則，需調整。</p>
+<blockquote>
+<p>規則: 紅色節點的兩個子節點 (child) 一定要是黑色</p>
+</blockquote>
+<p>此時可得口訣:</p>
+<pre><code>新生先為紅
+紅父不能融
+</code></pre>
+<p>此情景又可分為兩種情況，如下所示。</p>
+<h4 id="case-1-uncle-節點是黑色節點-or-null-節點">Case 1: Uncle 節點是黑色節點 or Null 節點</h4>
+<p>此種情況就是 AVL Tree 的 RR/LL/RL/LR 型。
+需進行 <code>Restructure (旋轉 + 變色)</code> 操作。</p>
+<p>以下用 RR 舉例:</p>
+<p><img src="images/restructure.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/restructure.png" alt=""></p>
+<blockquote>
+<p>口訣: 黑叔逼爺退 -&gt; Restructure (旋轉 + 變色)</p>
+</blockquote>
+<h4 id="case-2-uncle-節點是紅色節點">Case 2: Uncle 節點是紅色節點</h4>
+<p>此情境在紅黑樹中較簡單，只需進行<code>變色(Recolor)</code>動作即可。如下:</p>
+<p><img src="images/split_upper_insert.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/split_upper_insert.png" alt=""></p>
+<blockquote>
+<p>口訣: 紅叔變色龍 -&gt; Recolor (變色)</p>
+</blockquote>
+<h5 id="分析">分析</h5>
+<ul>
+<li>在 AVL Tree 中: 需進行 <code>split (分家) and upper insert</code> 的動作</li>
+<li>在 Red-Black Tree 中: 只需進行 <code>Recolor (變色)</code> 的動作</li>
+</ul>
+<p>所以，<code>Red-Black Tree 比 AVL Tree 好實作</code>。</p>
+<blockquote>
+<ul>
+<li>Change color: easy (且只需要一個 bit 即可解決)</li>
+<li>Split: hard</li>
+</ul>
+</blockquote>
+<h3 id="example-1">Example</h3>
+<p>有一個紅黑樹如下:</p>
+<p><img src="images/rb_tree_1.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/rb_tree_1.png" alt=""></p>
+<p>Step 1: 插入 1.5 及 4.5</p>
+<p>因為都是在黑色節點下插入，所以不用作任合處理。如下:</p>
+<p><img src="images/rb_tree_2.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/rb_tree_2.png" alt=""></p>
+<p>Step 2: 插入 1.8 及 9</p>
+<p>此時會碰到在紅色節點下插入的情境，我們分開來看:</p>
+<ol>
+<li>
+<p>插入 1.8:</p>
+<p>此時碰到 <code>Uncle 節點是黑色節點 or Null 節點</code>，且為 <code>RR</code> 型，於是直接 <code>Rotate + Recolor</code>，如下:</p>
+<p><img src="images/rotate_recolor.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/rotate_recolor.png" alt=""></p>
+<blockquote>
+<p>口訣: 黑叔逼爺退 -&gt; Restructure (旋轉 + 變色)</p>
+</blockquote>
+</li>
+<li>
+<p>插入 9:</p>
+<p>此時碰到 <code>Uncle 節點是紅色節點</code>，直接<code>變色(Recolor)</code>，如下:</p>
+<p><img src="images/recolor.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/recolor.png" alt=""></p>
+</li>
+</ol>
+<p>所以紅黑樹變為:</p>
+<p><img src="images/rb_tree_3.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/rb_tree_3.png" alt=""></p>
+<p>發現此時又遇到 <code>Uncle 節點是黑色節點 or Null 節點</code>的情境，且為 RR 型，於是再進行一次<code>Rotate + Recolor</code>，如下:</p>
+<p><img src="images/rb_tree_4.png" alt="">
+<img src="/my-blog/images/dsa/tree/binary_tree/binary_search_tree/red_black_tree/rb_tree_4.png" alt=""></p>
+<p>檢查了一下，發現都符合紅黑樹規則，於是就完成了。</p>
+<h2 id="紅黑樹-vs-avl-tree">紅黑樹 v.s. AVL Tree</h2>
+<p>雖然紅黑樹和AVL樹的時間複雜度都為 <code>O(logn)</code>，但:</p>
+<ul>
+<li>紅黑樹的高度: <code>2logn</code></li>
+<li>AVL樹高度: <code>logn</code></li>
+</ul>
+<p>紅黑樹 vs AVL Tree:</p>
+<ul>
+<li>紅黑樹「查找」較AVL樹: <code>慢</code></li>
+<li>紅黑樹「添加與刪除」較AVL樹: <code>快</code></li>
+</ul>
+<p>若光只查詢，AVL樹查詢的速度快於紅黑樹；若需要頻繁的新增與刪除元素，紅黑樹則優於AVL樹。</p>
+<blockquote>
+<p>常常用紅黑樹來實作 set 和 dictionary，C++ 中的 <code>std::set</code> 和 <code>std::map</code> 背後正是紅黑樹。</p>
+</blockquote>
+<h2 id="summary">Summary</h2>
+<p>這章節只介紹了紅黑樹的概念(用2-3-4 Tree 理解)與新增節點，
+紅黑樹的刪除請看<a href="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/">紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal</a></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?t=3697&amp;v=cH8nH0Enjhw&amp;feature=youtu.be">DSA 20200526: AVL Tree / 2-3-4 Tree / Red-Black Tree</a></li>
+<li><a href="https://zh.wikipedia.org/zh-tw/%E7%B4%85%E9%BB%91%E6%A8%B9">wiki: 紅黑樹</a></li>
+<li><a href="https://azrael.digipen.edu/~mmead/www/Courses/CS280/Trees-Mapping2-3-4IntoRB.html">Mapping 2-3-4 Trees into Red-Black Trees</a></li>
+<li><a href="https://z1nhouse.github.io/post/5lQAWUQWk/">【資料結構】平衡搜索樹 - 紅黑樹、B樹(2-3,2-3-4樹)、B+樹</a></li>
+<li><a href="https://medium.com/@imprld01/red-black-tree-%E7%B4%85%E9%BB%91%E6%A8%B9-8d793e692d70">Red-Black Tree / 紅黑樹</a></li>
+<li><a href="https://tigercosmos.xyz/post/2019/11/algorithm/red-black-tree/">紅黑樹（Red Black Tree）介紹 </a></li>
+<li><a href="https://josephjsf2.github.io/data/structure/and/algorithm/2020/04/28/red-black-tree-part-1.html">資料結構與演算法：Red Black Tree 紅黑樹 part 1</a></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree/" title="[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 1: Insertion" target="_blank" rel="external">https://kaka-lin.github.io/my-blog/2022/09/red_black_tree/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank" rel="external">CC BY 4.0</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/kaka-lin" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kaka-lin.github.io/my-blog/images/kaka_virtual.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/kaka-lin" target="_blank"><span class="text-dark">Kaka Lin</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>AIoT</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kaka-lin.github.io/my-blog/2022/09/2_3_4_tree/" title="[DSA] 2-3-4 Tree 介紹"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/"
+                    title="[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal "><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://www.facebook.com/profile.php?id=100001656484042" target="_blank" title="facebook" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-facebook"></i></a></li>
+    <li><a href="https://github.com/kaka-lin" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/%E5%AE%B6%E8%B1%AA-%E6%9E%97-014a02116/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+</ul>
+  <div class="copyright">
+    Copyright
+    &copy;2020  -
+    2024
+    <div class="publishby">
+        Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/python.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/c.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kaka-lin.github.io/my-blog/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://kaka-lin.github.io/my-blog/js/plugin.min.ee01f0915da127c8f127f6384fd08c677a9a87f16e6b265d282abf291b5065d9.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kaka-lin.github.io\/my-blog\/',
+            CONTENT_URL: 'https:\/\/kaka-lin.github.io\/my-blog\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kaka-lin.github.io/my-blog/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/kaka-lin.github.io\/my-blog\/2022\/09\/red_black_tree\/';
+        this.page.identifier = 'kaka-blog';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'kaka-blog' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+  </body>
+</html>

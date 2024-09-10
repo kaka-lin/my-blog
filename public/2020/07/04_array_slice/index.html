@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        [Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice` - Kaka&#39;s Blog
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Array 1. Creating an Array The type [n]T is an array of n values of type T. The expression var a [10]int An array&amp;rsquo;s length is part of its type, so arrays cannot be resized. But Go provides a convenient way of working with array. 2. Array initialize a := [6]int{2, 3, 5, 7, 11, 13} // or a := []int{2, 3, 5, 7, 11, 13} Slices A slice is" />
+    <meta name="generator" content="Hugo 0.126.3 with theme pure" />
+    <title>[Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice` - Kaka&#39;s Blog</title>
+    
+    
+    <link rel="stylesheet" href="https://kaka-lin.github.io/my-blog/css/style.min.c42838cb837ce405361b2d6e3a1e99ddcc6be6d8be2766f2fe32a151d5664f19.css">
+    
+    <link rel="stylesheet" href="https://kaka-lin.github.io/my-blog/css/custom.css" async>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://kaka-lin.github.io/my-blog/2020/07/04_array_slice/">
+  <meta property="og:site_name" content="Kaka&#39;s Blog">
+  <meta property="og:title" content="[Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice`">
+  <meta property="og:description" content="Array 1. Creating an Array The type [n]T is an array of n values of type T. The expression var a [10]int An array’s length is part of its type, so arrays cannot be resized. But Go provides a convenient way of working with array. 2. Array initialize a := [6]int{2, 3, 5, 7, 11, 13} // or a := []int{2, 3, 5, 7, 11, 13} Slices A slice is">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-07-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-07-14T00:00:00+00:00">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/08/07_methods_interfaces/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/06_advanced_function/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/05_maps/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/03_structs/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/02_flow_control/">
+      <meta property="og:see_also" content="https://kaka-lin.github.io/my-blog/2020/07/01_go_basics/">
+
+  <meta itemprop="name" content="[Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice`">
+  <meta itemprop="description" content="Array 1. Creating an Array The type [n]T is an array of n values of type T. The expression var a [10]int An array’s length is part of its type, so arrays cannot be resized. But Go provides a convenient way of working with array. 2. Array initialize a := [6]int{2, 3, 5, 7, 11, 13} // or a := []int{2, 3, 5, 7, 11, 13} Slices A slice is">
+  <meta itemprop="datePublished" content="2020-07-14T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-07-14T00:00:00+00:00">
+  <meta itemprop="wordCount" content="918">
+  <meta itemprop="keywords" content="Go,Go">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice`">
+  <meta name="twitter:description" content="Array 1. Creating an Array The type [n]T is an array of n values of type T. The expression var a [10]int An array’s length is part of its type, so arrays cannot be resized. But Go provides a convenient way of working with array. 2. Array initialize a := [6]int{2, 3, 5, 7, 11, 13} // or a := []int{2, 3, 5, 7, 11, 13} Slices A slice is">
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/kaka-lin" target="_blank">
+            <img class="img-circle img-rotate" src="https://kaka-lin.github.io/my-blog/images/kaka_virtual.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Kaka Lin</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taipei, Taiwan</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/my-blog/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/my-blog/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-books">
+                <a href="/my-blog/series/">
+                    <i class="icon icon-book-fill"></i>
+                  <span class="menu-title">Study Notes</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/my-blog/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/my-blog/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Categories </h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/c&#43;&#43;/" class="category-list-link">c&#43;&#43;</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/canbus/" class="category-list-link">canbus</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/data-science/" class="category-list-link">data science</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/data-structure-and-algorithm/" class="category-list-link">data structure and algorithm</a><span class="category-list-count">16</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/database/" class="category-list-link">database</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/devops/" class="category-list-link">devops</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/docker/" class="category-list-link">docker</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/go/" class="category-list-link">go</a><span class="category-list-count">8</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/ml/dl/" class="category-list-link">ml/dl</a><span class="category-list-count">11</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/os/" class="category-list-link">os</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/python/" class="category-list-link">python</a><span class="category-list-count">13</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/qt/" class="category-list-link">qt</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://kaka-lin.github.io/my-blog/categories/react/" class="category-list-link">react</a><span class="category-list-count">2</span></li>
+        </ul>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Series </h3>
+    <div class="widget-body">
+        <ul class="series-list">
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/asynchronous-programming/" class="series-list-link">asynchronous programming</a><span class="series-list-count">7</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/data-structure-and-algorithm/" class="series-list-link">data structure and algorithm</a><span class="series-list-count">16</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/distributed/" class="series-list-link">distributed</a><span class="series-list-count">1</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/go/" class="series-list-link">go</a><span class="series-list-count">7</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/machine-learning/" class="series-list-link">machine learning</a><span class="series-list-count">11</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/python/" class="series-list-link">python</a><span class="series-list-count">13</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/pytorch/" class="series-list-link">pytorch</a><span class="series-list-count">4</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/react/" class="series-list-link">react</a><span class="series-list-count">2</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/tensorflow/" class="series-list-link">tensorflow</a><span class="series-list-count">3</span></li>
+            <li class="series-list-item"><a href="https://kaka-lin.github.io/my-blog/series/yolo-series/" class="series-list-link">yolo series</a><span class="series-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Tags </h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/array/" class="tag-list-link">array</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/automatic-differentiation/" class="tag-list-link">automatic differentiation</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/canbus/" class="tag-list-link">canbus</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/ci/cd/" class="tag-list-link">ci/cd</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/classification/" class="tag-list-link">classification</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/concurrency/" class="tag-list-link">concurrency</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/coroutine/" class="tag-list-link">coroutine</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/distributed/" class="tag-list-link">distributed</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/dp/" class="tag-list-link">dp</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/generator/" class="tag-list-link">generator</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/google-trends/" class="tag-list-link">google trends</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/hash-table/" class="tag-list-link">hash table</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/heap/" class="tag-list-link">heap</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/i/o-models/" class="tag-list-link">i/o models</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/jupyter/" class="tag-list-link">jupyter</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/kvaser/" class="tag-list-link">kvaser</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/letterbox/" class="tag-list-link">letterbox</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/linked-list/" class="tag-list-link">linked list</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/matplotlib/" class="tag-list-link">matplotlib</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/metrics/" class="tag-list-link">metrics</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/mysql/" class="tag-list-link">mysql</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/object-detection/" class="tag-list-link">object detection</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/oop/" class="tag-list-link">oop</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/orm/" class="tag-list-link">orm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/parallelism/" class="tag-list-link">parallelism</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/progressbar/" class="tag-list-link">progressbar</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/pytorch/" class="tag-list-link">pytorch</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/segmentation/" class="tag-list-link">segmentation</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/socketcan/" class="tag-list-link">socketcan</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/sqlalchemy/" class="tag-list-link">sqlalchemy</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/sqlite/" class="tag-list-link">sqlite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kaka-lin.github.io/my-blog/tags/tree/" class="tag-list-link">tree</a><span
+                    class="tag-list-count">11</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2024/09/introduction/" class="title">[Distributed] 分散式訓練介紹</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2024-09-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">2024-09-10</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2024/06/segmentation/" class="title">[Segmentation] 影像分割指標 (Segmentation Metrics)</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2024-06-04 00:00:00 &#43;0000 UTC" itemprop="datePublished">2024-06-04</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2023/03/socketcan_example/" class="title">[CanBus] Example C code for SocketCAN</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-03-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">2023-03-27</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2023/03/kvaser_socketcan/" class="title">[CanBus] SocketCAN Support for Kvaser Devices</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-03-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2023-03-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kaka-lin.github.io/my-blog/2022/09/red_black_tree_removal/" class="title">[DSA] 紅黑樹 (Red-Black Tree) 介紹 - Part 2: Removal </a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-09-28 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-09-28</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a class="article-title"
+     href="/my-blog/2020/07/04_array_slice/">
+     [Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice`
+  </a>
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kaka-lin.github.io/my-blog/2020/07/04_array_slice/" class="article-date">
+  <time datetime="2020-07-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">2020-07-14</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a class="article-category-link" href="/my-blog/categories/go/"> Go </a>
+</span><span class="article-series">
+  <i class="icon icon-book"></i>&nbsp;
+  <a class="article-series-link" href="/my-blog/series/go/"> Go </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/my-blog/2020/07/04_array_slice/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="array">Array</h2>
+<h3 id="1-creating-an-array">1. Creating an Array</h3>
+<p>The type <code>[n]T</code> is an array of <code>n</code> values of type <code>T</code>.</p>
+<p>The expression</p>
+<pre><code class="language-go">var a [10]int
+</code></pre>
+<ul>
+<li>An array&rsquo;s length is part of its type, so <code>arrays cannot be resized</code>. But Go provides a convenient way of working with array.</li>
+</ul>
+<h3 id="2-array-initialize">2. Array initialize</h3>
+<pre><code class="language-go">a := [6]int{2, 3, 5, 7, 11, 13}
+
+// or
+a := []int{2, 3, 5, 7, 11, 13}
+</code></pre>
+<h2 id="slices">Slices</h2>
+<p>A slice is a <code>dynamically-size, flexible</code> view into the elements of an array.</p>
+<pre><code>Slice的長度是可變的，與Array相比，提供一種更高階的觀點看待一片資料。
+</code></pre>
+<ul>
+<li>Slice also has <code>continuous segments</code> of memory locations</li>
+<li>The default value of uninitialized slice is <code>nil</code></li>
+<li>Slices <code>does not store the data</code>. It just provides <code>reference to an array</code></li>
+</ul>
+<h3 id="1-creating-a-slice">1. Creating a Slice</h3>
+<h4 id="method-1-like-array-but-no-size">Method 1: like array but no size</h4>
+<p>The type <code>[]T</code> is a slice with elements of type T.</p>
+<pre><code class="language-go">var s []int // length: 0, capacity: 0 -&gt; nil
+</code></pre>
+<h4 id="method-2-use-make">Method 2: use <code>make()</code></h4>
+<p>Create slice by using <code>make()</code> which is available in builtin package of golang</p>
+<pre><code class="language-go">s := make([]int, 5) // lenght == capacity == 5
+
+// or
+s := make([]int, 5, 10) // lenght: 5, capacity: 10
+</code></pre>
+<h4 id="method-3-lowhigh">Method 3: <code>[low:high]</code></h4>
+<p>A slice is formed by specifying two indices, a low and high bound, seperated by a colon:</p>
+<pre><code class="language-go">var s []type = a[low:high]
+
+//or
+s := a[low:high]
+</code></pre>
+<h4 id="example">Example:</h4>
+<pre><code class="language-go">// Elements 1 through 3
+// a = [1, 2, 3, 4, 5]
+
+//var s []int = a[1:4]
+s := a[1:4] // [2, 3, 4]
+</code></pre>
+<ul>
+<li>More</li>
+</ul>
+<pre><code class="language-go">// slice initialize
+a := []int{2,3,5,7,11}
+
+a1 = a[1:4] // [3 5 7]
+
+a2 = a[:2] // [2 3]
+
+a3 = a[1:] // [3 5 7 11]
+
+a4 = a[:] // [2 3 5 7 11]
+</code></pre>
+<h3 id="2-slices-are-like-references-to-arrays">2. Slices are like references to arrays</h3>
+<p><code>A slice does not store any data</code>, it just describes a section of an underlying array.</p>
+<ul>
+<li>Changing the elements of a slice modifies the corresponding elements of its underlying array.</li>
+</ul>
+<pre><code class="language-go">a := [6]int{1, 2, 3, 4, 5, 6}
+fmt.Println(a) // [1 2 3 4 5 6]
+b := a[1:4]
+fmt.Println(b) // [2 3 4]
+b[1] = 10
+fmt.Println(b) // [2 10 4]
+fmt.Println(a) // [1 2 10 4 5 6]
+</code></pre>
+<h3 id="3-slice-length-and-capacity">3. Slice <code>length</code> and <code>capacity</code></h3>
+<p>A slice has both a <code>length</code> and a <code>capacity</code>.</p>
+<ul>
+<li>
+<p><code>length</code></p>
+<p>The length of a slice is the number of elements it contains.</p>
+<pre><code>Number of elements
+</code></pre>
+</li>
+<li>
+<p><code>capacity</code></p>
+<p>The capacity of a slice is the number of elements in the underlying array</p>
+<pre><code>Total size
+</code></pre>
+</li>
+</ul>
+<pre><code class="language-go">// length
+len(s)
+
+// capacity
+cap(s)
+</code></pre>
+<h3 id="4-slices-of-slices">4. Slices of slices</h3>
+<p>Slices can contain any type, including other slices</p>
+<h4 id="example-2d-array">Example: 2D Array</h4>
+<p>3x3 Array</p>
+<pre><code class="language-go">matrix := [][]int{
+    make([]int, 3),
+    make([]int, 3),
+    make([]int, 3),
+}
+</code></pre>
+<p><code>tic-tac-toe boart(井字遊戲)</code></p>
+<pre><code class="language-go">board := [][]string{
+    []string{&quot;-&quot;, &quot;-&quot;, &quot;-&quot;},
+    []string{&quot;-&quot;, &quot;-&quot;, &quot;-&quot;},
+    []string{&quot;-&quot;, &quot;-&quot;, &quot;-&quot;},
+}
+</code></pre>
+<h3 id="5-append-function">5. <code>append</code> function</h3>
+<p>Appending new values to the slice using built-in <code>append</code> function.</p>
+<pre><code class="language-go">func append(s []T, vs ...T) []T
+</code></pre>
+<ul>
+<li>
+<p>If the backing array of <code>s</code> is <code>too small</code> to fit all the given values a <code>bigger array will be allocated</code>. The returned <code>slice</code> will <code>point to the newly allocated array</code>.</p>
+<pre><code>當append的元素個數超過原slice的capacity時，append利用現有的slice建立一個新的slice，並將後續的參數附加在這個slice之後。
+</code></pre>
+</li>
+</ul>
+<pre><code class="language-go">var s []int
+s = append(s, 0)
+</code></pre>
+<h3 id="6-copy-function">6. <code>copy</code> function</h3>
+<p>Copying one slice into another using built-in <code>copy</code> function.</p>
+<pre><code class="language-go">func copy(dst []T, src []T) int
+</code></pre>
+<ul>
+<li><code>copy</code> will return the number of elements copied which is the minimum of <code>len(dst)</code> and <code>len(src)</code>.</li>
+<li>
+<pre><code>複製時，目的slice的容量必須足夠，否則會發生 cap out of range的錯誤，copy函式若執行成功，會傳回複製的元素個數。
+</code></pre>
+</li>
+</ul>
+<pre><code class="language-go">s1 := []int{1,2,3}
+s2 := make([]int, 2)
+copy(s1, s2)
+</code></pre>
+<h3 id="7-range-function">7. <code>range</code> function</h3>
+<p>The <code>range</code> form of the <code>for</code> loop iterates over a <code>slice</code> or <code>map</code>.</p>
+<p>When ranging over a slice, two values are returned for each iteration.</p>
+<ol>
+<li><code>index</code></li>
+<li>copy of the <code>element</code> at that index.</li>
+</ol>
+<pre><code class="language-go">var a = []int{1,2,3,4,5}
+
+for i, v := range a {
+    fmt.Printf(&quot;a[%d]: %d\n&quot;, i, v)
+}
+</code></pre>
+<h4 id="skip-the-index-or-value">Skip the index or value</h4>
+<p>Can skip the <code>index</code> or <code>value</code> by assigning to <code>_</code></p>
+<pre><code class="language-go">for i, _ := range array
+for _, v := range array
+</code></pre>
+<p>If only want the index, can omit the second variable.</p>
+<pre><code class="language-go">for i := range array
+</code></pre>
+<h2 id="exercise-slices">Exercise: Slices</h2>
+<p>Implement <code>Pic</code>. It should return a slice of length <code>dy</code>, each element of which is a slice of <code>dx</code> 8-bit unsigned integers. When you run the program, it will display your picture, interpreting the integers as grayscale (well, bluescale) values.</p>
+<p>The choice of image is up to you. Interesting functions include <code>(x+y)/2</code>, <code>x*y</code>, and <code>x^y</code>.</p>
+<pre><code class="language-go">func Pic(dx, dy int) [][]uint8 {
+    image := make([][]uint8, dy)
+    for i := range image {
+        image[i] = make([]uint8, dx)
+        for j := range image[i] {
+            image[i][j] = uint8((i+j) / 2)
+        }
+    }
+
+    return image
+}
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://kaka-lin.github.io/my-blog/2020/07/04_array_slice/" title="[Go] Ch1: Go Basics - 04 Go Data Structure: `Array` &amp; `Slice`" target="_blank" rel="external">https://kaka-lin.github.io/my-blog/2020/07/04_array_slice/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank" rel="external">CC BY 4.0</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/kaka-lin" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kaka-lin.github.io/my-blog/images/kaka_virtual.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/kaka-lin" target="_blank"><span class="text-dark">Kaka Lin</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>AIoT</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kaka-lin.github.io/my-blog/2020/07/03_structs/" title="[Go] Ch1: Go Basics - 03 Go Data Structure: `Structs`"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kaka-lin.github.io/my-blog/2020/07/05_maps/"
+                    title="[Go] Ch1: Go Basics - 05 Go Data Structure: `Maps`"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://www.facebook.com/profile.php?id=100001656484042" target="_blank" title="facebook" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-facebook"></i></a></li>
+    <li><a href="https://github.com/kaka-lin" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/%E5%AE%B6%E8%B1%AA-%E6%9E%97-014a02116/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+</ul>
+  <div class="copyright">
+    Copyright
+    &copy;2020  -
+    2024
+    <div class="publishby">
+        Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/python.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/c.min.js" defer></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kaka-lin.github.io/my-blog/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://kaka-lin.github.io/my-blog/js/plugin.min.ee01f0915da127c8f127f6384fd08c677a9a87f16e6b265d282abf291b5065d9.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kaka-lin.github.io\/my-blog\/',
+            CONTENT_URL: 'https:\/\/kaka-lin.github.io\/my-blog\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kaka-lin.github.io/my-blog/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/kaka-lin.github.io\/my-blog\/2020\/07\/04_array_slice\/';
+        this.page.identifier = 'kaka-blog';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'kaka-blog' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+  </body>
+</html>

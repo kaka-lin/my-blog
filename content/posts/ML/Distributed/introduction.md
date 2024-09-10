@@ -32,8 +32,10 @@ categories: [ML/DL]
 
 <p align="center">
     <img src="images/data_parallel_1.png" width=40%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/data_parallel_1.png" width=40%>
 </p>
+
+![](/my-blog/images/ml/distributed/introduction/images/data_parallel_1.png)
+
 
 ##### Example: Azure 資料平行處理原則
 
@@ -41,8 +43,9 @@ categories: [ML/DL]
 
 <p align="center">
     <img src="images/data_parallel_2.png" width=70%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/data_parallel_2.png" width=70%>
 </p>
+
+![](/my-blog/images/ml/distributed/introduction/images/data_parallel_2.png)
 
 如上，資料會分割成分割區，而分割區數目等於計算叢集中可用節點的總數。 模型會在其中每個背景工作節點中複製，而且每個背景工作會在自己的資料子集上運作。 請記住，每個節點都必須有容量來支援要訓練的模型，也就是模型必須完全符合每個節點。
 
@@ -68,8 +71,9 @@ categories: [ML/DL]
 
 <p align="center">
     <img src="images/data_parallel_method.png" width=70%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/data_parallel_method.png" width=70%>
 </p>
+
+![](/my-blog/images/ml/distributed/introduction/images/data_parallel_method.png)
 
 ## 模型平行處理 (Model Parallel)
 
@@ -86,8 +90,9 @@ model parallel，也叫做 tensor parallel
 
 <p align="center">
     <img src="images/model_parallel_1.png" width=40%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/model_parallel_1.png" width=40%>
 </p>
+
+![](/my-blog/images/ml/distributed/introduction/images/model_parallel_1.png)
 
 此方法通常是在模型非常大時，，如: `GPT-3`，單個 GPU 的記憶體已經完全裝部下整個網路時才會使用。但相比起來，我們可以此方式把一個超大模型訓練起來，不然對於一個單GPU的話，超大模型是完全沒辦法 work 的。
 
@@ -109,9 +114,9 @@ model parallel，也叫做 tensor parallel
 
 <p align="center">
     <img src="images/model_and_data_parallel.png" width=100%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/model_and_data_parallel.png" width=100%>
 </p>
 
+![](/my-blog/images/ml/distributed/introduction/images/model_and_data_parallel.png)
 
 作法是:
 
@@ -136,8 +141,9 @@ model parallel，也叫做 tensor parallel
 
 <p align="center">
     <img src="images/parameter_server_1.png" width=60%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/parameter_server_1.png" width=60%>
 </p>
+
+![](/my-blog/images/ml/distributed/introduction/images/parameter_server_1.png)
 
 > 注意: 此方法為`同步更新 (synchronous)`
 
@@ -147,8 +153,9 @@ Parameter Server 架構主要分為兩大部份，如下圖:
 
 <p align="center">
     <img src="images/parameter_server_2.png" width=60%>
-    <img src="/my-blog/images/ml/distributed/introduction/images/parameter_server_2.png" width=60%>
 </p>
+
+![](/my-blog/images/ml/distributed/introduction/images/parameter_server_2.png)
 
 - 一個 Parameter Server group:
 
